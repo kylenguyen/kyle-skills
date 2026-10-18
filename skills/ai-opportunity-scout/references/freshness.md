@@ -1,13 +1,6 @@
 # Freshness policy
 
-AI capability, model pricing and the competitive landscape change faster than any model's training data. Ideas built on stale facts fail in predictable ways:
-
-- "No one does this yet" is false because three startups launched last quarter.
-- "Models can't do this reliably" is false because a recent release can.
-- "Inference makes this uneconomic" is false because prices fell several-fold.
-- "This is defensible" is false because the incumbent shipped it as a free feature.
-
-Each of these errors can promote a dead area or kill a live one. So every agent in this skill follows the rules below.
+AI capability, model pricing and the competitive landscape change faster than any model's training data. A stale fact ("no one does this yet", "models can't do this", "inference is too expensive") can promote a dead area or kill a live one, so every agent follows these rules.
 
 ## 1. Know today's date and distrust your sense of "latest"
 
@@ -39,14 +32,12 @@ Use your own knowledge for stable things: business frameworks, typical workflow 
 
 ## 4. Evidence tags
 
-Tag every claim that supports a score:
+Tag every claim that supports a score (the rubric's evidence caps depend on these tags):
 
 - `[F: <source>, <YYYY-MM-DD or YYYY-MM>]` — fact from a source you found in this run. Include the publication date, not the access date. Add `stale` if the source is past its maximum age.
 - `[I]` — your inference from tagged facts. Say briefly which facts.
 - `[A]` — an assumption with no direct evidence.
 - `[M]` — model knowledge, not looked up in this run. Allowed only for stable topics (section 3).
-
-Scoring consequence (also stated in the rubric): a criterion supported only by `[A]` or `[M]` evidence is capped at 2. A time-sensitive claim (section 2) tagged `[M]` counts as `[A]`.
 
 ## 5. Search well, not just often
 
@@ -58,16 +49,12 @@ Scoring consequence (also stated in the rubric): a criterion supported only by `
 
 ### Search budget
 
-Each prompt gives an approximate search budget, because per-agent search limits are real and a run degrades when agents exhaust them on low-value lookups. Spend searches first on the facts that could trigger a knockout or move a score by 2 or more, then on the rest. If you hit a limit, stop searching, record `search: partial`, tag what you couldn't check, and finish the output rather than leaving it incomplete.
+Each prompt gives an approximate search budget. Spend searches first on the facts that could trigger a knockout or move a score by 2 or more, then on the rest. If you hit a limit, stop searching, record `search: partial`, tag what you couldn't check, and finish the output rather than leaving it incomplete.
 
 ## 6. When search is unavailable or fails
 
 Do not quietly fall back to memory. Instead:
 
 1. Record `search: unavailable` (or `partial`) in your output and in `run-log.md`.
-2. Tag the affected claims `[M]` or `[A]`. The scoring caps then apply automatically.
+2. Tag the affected claims `[M]` or `[A]`, so the scoring caps apply.
 3. The final report must say in its summary that the run is degraded and which conclusions are most at risk. Usually these are #2 (AI step change), #6 (room for a small builder), the channel rules and the probe thresholds.
-
-## 7. Re-check before you conclude
-
-Stage 1 snapshots the landscape at the start of the run. The red team (Stage 7) runs a fresh search for competitor and incumbent launches for each shortlisted area, because a run can span days, and launches cluster. The judge must account for anything new the red team finds.

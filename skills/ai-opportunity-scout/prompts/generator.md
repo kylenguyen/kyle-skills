@@ -9,7 +9,7 @@ Read first:
 - `{SKILL_DIR}/references/idea-schema.md`: the seed format
 - `{SKILL_DIR}/references/freshness.md`: evidence tagging and search budget
 
-For the **founder** lens, also read `{SKILL_DIR}/references/vc-principles.md` section 1: organic ideas from the builder's own experience outperform brainstormed ones, so lean on the background in `scope.md` as hard as it will bear.
+For the **founder** lens, lean on the background in `scope.md` as hard as it will bear.
 
 Seeds are raw material. The next stage groups them into opportunity areas and the run evaluates the areas, not the seeds. So breadth and variety matter more than polish, and you don't need to prove a seed is a business. What makes a useful seed: a concrete product shape a builder could prototype in a week or two, for a recurring job that real people struggle with, using something current AI does well.
 

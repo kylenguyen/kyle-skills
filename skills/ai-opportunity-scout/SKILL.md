@@ -5,13 +5,11 @@ description: Find the best AI product area for a fast, low-maintenance, patient 
 
 # AI Opportunity Scout
 
-Find a good place to start building, not a finished business plan. Products are found by shipping something specific, watching what users do, then improving or pivoting. Desk research can't tell you which product will work. It can tell you which areas are worth exploring, and which first experiments will give honest signal fastest. That is what this skill produces.
+Find a good place to start building, not a finished business plan. Desk research can't tell which product will work; it can tell which areas are worth exploring and which first experiments give honest signal fastest.
 
 The unit of output is an **opportunity area**: a user segment, a recurring job they struggle with, and a recent shift that makes AI useful for it. A good area is wide enough to hold several product shapes, so a failed first prototype leads to a pivot inside the area rather than a fresh start. Inside each area, the skill designs **probes**: small prototypes or tests, each buildable in days and cheap to leave running, each with a pre-agreed threshold that decides whether to double down, iterate or move on.
 
-Why areas and not single ideas: when the unit is a single idea, every gate rewards narrowing it until it survives scrutiny. The survivors end up as small niches that only work with an expert attached, have no room to pivot, and need a lot of human work to run. Scoring areas keeps the options open until the market, not the desk research, picks the product.
-
-How areas are judged: the way a good early-stage investor reads an application, adapted to this builder. Investors such as Y Combinator look for an acute problem a specific group wants solved now, a recent change that makes it possible, an insight others lack, a check that it isn't a tarpit others have stalled in, and founders suited to it. They also need venture-scale markets and teams that can hire, which this builder doesn't have and doesn't need. `references/vc-principles.md` sets out what is borrowed and what is deliberately changed. The biggest change is at the end: an investor must pick by conviction, but this builder can test cheaply, so the run finishes with an opening round of parallel probes and a rule for letting their results choose the focus area.
+Areas are scored the way an early-stage investor reads an application, adapted to this builder (`references/rubric.md`). Because this builder can test cheaply where an investor must pick by conviction, the run ends with an opening round of parallel probes and a rule for letting their results choose the focus area.
 
 ## Builder profile
 
@@ -26,9 +24,9 @@ The rubric and probe design assume the builder below. Show these defaults in the
 | Cash per probe | Under SGD 500 for tools, hosting and inference | Probe cost caps |
 | Parallel probes | Up to 3 live at once | Probe sequencing |
 
-## Freshness comes first
+## Freshness
 
-AI capability, model pricing, competitors, incumbent roadmaps and marketplace rules change month to month. Your training data is out of date for all of them. Read `references/freshness.md` before starting. It defines which facts must come from a current search, how to tag and date evidence, how to budget searches, and what to do when search is unavailable. Every prompt in `prompts/` already references it. Stage 1 builds a shared, dated snapshot so sub-agents start from current facts instead of each re-deriving them from memory.
+AI capability, model pricing, competitors and marketplace rules change month to month, so your training data is out of date for all of them. Read `references/freshness.md` before starting: it defines which facts must come from a current search, how to tag evidence, and what to do when search is unavailable.
 
 ## Inputs
 
@@ -45,7 +43,7 @@ Collect these from the user's prompt. Ask one short question only if both the do
 | Depth | `standard` |
 | AI smoke test during probe design | Off (opt-in) |
 
-Ask for the background even if the scope looks complete. It changes the result more than any other input: most of YC's top companies came from problems the founders met in their own work, and insider knowledge or membership of a user community makes probes faster and their signal easier to read. If the user gives no domain or target users but does give a rich background, the background can be the scope.
+Ask for the background even if the scope looks complete: it changes the result more than any other input, because ideas from the builder's own work outperform brainstormed ones. If the user gives no domain or target users but does give a rich background, the background can be the scope.
 
 ### Depth settings
 
@@ -59,11 +57,11 @@ Tell the user the approximate sub-agent count in the scope confirmation, because
 
 ## Run folder
 
-Create `./opportunity-scout-runs/<YYYY-MM-DD>-<scope-slug>/` in the current working directory. Every stage writes its output there, which lets a run resume from any stage and keeps a record of why each area was dropped. Keep `run-log.md` updated with the stage, timestamp, sub-agent count and whether web search was available.
+Create `./opportunity-scout-runs/<YYYY-MM-DD>-<scope-slug>/` in the current working directory. Every stage writes its output there, so a run can resume from any stage. Keep `run-log.md` updated with the stage, timestamp, sub-agent count and whether web search was available.
 
 ### Resuming
 
-Runs can pause on usage limits. Before launching any sub-agent, check whether its output file already exists and is complete, and skip it if so. Never have two live sub-agents with the same output path: parallel writers to one file overwrite each other's work. If a sub-agent must be relaunched, tell it to overwrite the partial file.
+Before launching any sub-agent, check whether its output file already exists and is complete, and skip it if so. Never have two live sub-agents with the same output path, because parallel writers overwrite each other. If a sub-agent must be relaunched, tell it to overwrite the partial file.
 
 ## How to spawn sub-agents
 
@@ -78,7 +76,7 @@ Each stage has a prompt file in `prompts/`. Read it, fill in the `{placeholders}
 | `{SMOKE_TEST}` | probe-build | `on` or `off`, from `scope.md` |
 | `{N_ALTERNATES}` | judge | 1 at quick depth, 2 otherwise |
 
-Launch every independent sub-agent in a stage in a single message so they run in parallel. Sub-agents write their results to the paths given in the prompt and return a short summary. Read the files, not just the summaries.
+Launch every independent sub-agent in a stage in a single message so they run in parallel. Sub-agents write to the paths given in the prompt and return a short summary. Read the files, not just the summaries.
 
 ## Pipeline
 
@@ -90,15 +88,15 @@ Launch every independent sub-agent in a stage in a single message so they run in
 
 ### Stage 0: Scope brief (main agent)
 
-Write `scope.md`: domain, target users, region, user background, builder profile, exclusions, depth, smoke test on or off, today's date. Show it to the user in a few lines and wait for confirmation before spawning anything. A wrong scope or builder profile wastes the whole run, and confirming costs one message.
+Write `scope.md`: domain, target users, region, user background, builder profile, exclusions, depth, smoke test on or off, today's date. Show it to the user in a few lines and wait for confirmation before spawning anything, because a wrong scope or builder profile wastes the whole run.
 
 ### Stage 1: Landscape snapshot (1 sub-agent, `prompts/landscape.md`)
 
-The sub-agent researches the current state of AI and the scope, and writes `landscape.md`: current models and what they now do reliably, API pricing, provider and incumbent launches, AI startups and small self-serve AI products in the scope, where investors are putting money (funding rounds, accelerator themes, requests for startups), models proven in other regions or segments, past shut-downs, the distribution surfaces where the scope's users find tools (marketplaces, app stores, plugin directories, communities) and their rules, self-serve and freelancer price points, and relevant regulation. Every claim carries a source and a date. Later stages treat this file as the baseline and search further only for what it doesn't cover.
+Writes `landscape.md`: a dated, sourced snapshot of current AI capability and pricing, incumbents, startups, capital flows, distribution surfaces and regulation in the scope. Later stages treat it as the baseline and search only for what it doesn't cover.
 
 ### Stage 2: Seeds (6 parallel sub-agents, `prompts/generator.md`)
 
-Run one sub-agent per lens in `references/lenses.md`. Each lens produces one seventh of the depth's seed count and the founder lens two sevenths (pass it as `{N}`), because organic ideas outperform brainstormed ones, in the seed format in `references/idea-schema.md`, written to `seeds/lens-<name>.json`. A seed is a concrete product shape with a light evidence anchor. Seeds are raw material for clustering, so variety matters more than polish.
+Run one sub-agent per lens in `references/lenses.md`, writing to `seeds/lens-<name>.json`. Each lens produces one seventh of the depth's seed count and the founder lens two sevenths.
 
 ### Stage 3: Cluster into areas (main agent)
 
@@ -108,37 +106,37 @@ Group the seeds into opportunity areas using the area schema in `references/idea
 2. Test the width. You should be able to name the user, the recurring job, and at least three product shapes that serve that user's job. If you can't name three shapes, the area is too narrow. If the users or the job differ across the shapes, the area is too wide ("AI for SMEs"), so split it.
 3. Prefer areas with seeds from two or more lenses. Independent lenses landing on the same job is evidence the job is real. An area with only one or two seeds may stay if you can name adjacent shapes; mark it `thin`.
 4. Add `adjacent_shapes`: product shapes that fit the area but that no generator proposed. Probe design draws on these.
-5. Fill a first draft of `insight`, `urgent_subsegment`, `proxies` and `prior_attempts` from the seeds and `landscape.md`. Keep them rough; the analyst checks them. When two candidate groupings are equally good, prefer the one that keeps a founder-lens seed in the area, because that is where the builder's insight is.
-6. Drop anything in the exclusions. Record seeds that fit no area as `unclustered` for the funnel report.
+5. Fill a rough first draft of `insight`, `urgent_subsegment`, `proxies` and `prior_attempts` from the seeds and `landscape.md`; the analyst checks them. When two candidate groupings are equally good, prefer the one that keeps a founder-lens seed in the area, because that is where the builder's insight is.
+6. Drop anything in the exclusions. Record seeds that fit no area as `unclustered`.
 
 Aim for the area count in the depth table.
 
 ### Stage 4: Area screen (parallel sub-agents, ~5 areas each, `prompts/screener.md`)
 
-A cheap pass/kill check of each area against the knockouts in `references/rubric.md`: #2 AI step change, #3 signal speed, #4 low-ops fit and #6 room for a small builder (including obvious tarpits). The screener relies mainly on `landscape.md` and runs a targeted search only when a knockout depends on something the snapshot doesn't cover. Write `screen/batch-<n>.json` and merge into `screen.json`. When in doubt, pass the area.
+A cheap pass/kill check against the knockouts in `references/rubric.md`. Each writes `screen/batch-<n>.json`; merge them into `screen.json`.
 
 ### Stage 5: Area scoring (1 sub-agent per 2 areas, `prompts/analyst.md`)
 
-Score all 10 criteria in `references/rubric.md` with researched evidence, including a tarpit check and the seven partner questions from `references/vc-principles.md`. Write one file per area to `scoring/<area-id>.md`. Apply the knockouts, rank by weighted score, and keep the probe-design count for the chosen depth. If two areas tie within 0.25 for the last place, prefer the one with higher #3 signal speed.
+Each analyst scores all 10 criteria in `references/rubric.md` with researched evidence and writes `scoring/<area-id>.md`. Apply the knockouts, rank by weighted score, and keep the probe-design count for the chosen depth. If two areas tie within 0.25 for the last place, prefer the one with higher #3 signal speed.
 
 ### Stage 6: Probe design (2 specialists + 1 synthesiser per area)
 
-For each shortlisted area, launch two specialists in parallel. Each follows `references/probe-design.md`.
+For each shortlisted area, launch two specialists:
 
 | Specialist | Prompt | Output |
 |---|---|---|
-| Channel and signal: where the users are, how to reach them without sales, what signal to trust | `prompts/probe-channel.md` | `probes/<area-id>/channel.md` |
-| Build and operations: what can be built in the build window, what it costs to run, what creates human work (runs the smoke test if enabled) | `prompts/probe-build.md` | `probes/<area-id>/build.md` |
+| Channel and signal | `prompts/probe-channel.md` | `probes/<area-id>/channel.md` |
+| Build and operations (runs the smoke test if enabled) | `prompts/probe-build.md` | `probes/<area-id>/build.md` |
 
-Launch both specialists for all shortlisted areas in a single message. When both reports for an area are in, launch the synthesiser (`prompts/synthesiser.md`). Its first job is to reconcile the two. A typical conflict: channel wants a marketplace add-on, but build finds a six-week review queue, or build proposes a tool that needs a human to clean each user's data. It then designs 3–5 sequenced probes and a pivot map, and writes `probes/<area-id>/playbook.md` using `templates/area-playbook.md`.
+Launch both specialists for all shortlisted areas in a single message. When both reports for an area are in, launch the synthesiser (`prompts/synthesiser.md`), which reconciles them and writes `probes/<area-id>/playbook.md`.
 
 ### Stage 7: Red team (1 sub-agent per area, `prompts/red-team.md`)
 
-Each attacker argues that the area is a trap: probes that will produce false signal, human work hidden in the design, a tarpit others have stalled in, a funded team that would flatten the probes, a hard ceiling, or an incumbent or model release about to bundle the job. It runs a fresh competitor and incumbent search, because days or weeks may have passed since Stage 1. Output: `redteam/<area-id>.md`.
+Argues that the area is a trap, including a fresh competitor and incumbent search, because days may have passed since Stage 1. Output: `redteam/<area-id>.md`.
 
 ### Stage 8: Judge (1 sub-agent, `prompts/judge.md`)
 
-The judge acts as an investment committee. It rescores all 10 criteria for each area using the playbook and the red team, applies the knockouts, ranks the areas, and picks one primary area and the alternates, with a short committee view of each (why now, why this builder, what would have to be true). It must justify every score change from Stage 5. It then designs the opening round from `references/probe-design.md` section 8: one cheap probe per finalist, run in parallel on the same time box, with a focus rule written in advance. It also names the single first probe, for when the builder can start only one. Output: `final.json`.
+Rescores, ranks and picks one primary area and the alternates, then designs the opening round, the focus rule and the single first probe. Output: `final.json`.
 
 ### Report (main agent)
 
@@ -146,18 +144,17 @@ Write `report.md` with:
 
 1. **Start here:** the primary area in two lines, the first probe, what it costs, when it can ship, and the date by which its signal decides the next move. Then each alternate in two lines. Then the opening round as a table (area, probe, build days, cost cap, thresholds) with the focus rule beneath it, the run date and the search status.
 2. One area brief per finalist, using `templates/area-brief.md`.
-3. A score-movement table: each area's Stage 5 score next to its final score.
-4. A funnel report from `templates/funnel-report.md`: every area and where it stopped, and which area each seed went to.
+3. A funnel report from `templates/funnel-report.md`, including the score movement from Stage 5 to final.
 
 In chat, give the user the start-here recommendation, the opening round in one line per probe, and the path to `report.md`. Offer to publish the report as a page if they plan to share it.
 
 ## After the run: reviewing probe results
 
-The build-measure-pivot loop continues after the report. When the user comes back with probe results for a run, don't rerun the funnel:
+When the user comes back with probe results for a run, don't rerun the funnel:
 
 1. Read the run's `report.md` and the area's `probes/<area-id>/playbook.md`.
 2. Append the results to `probe-log.md` in the run folder: the probe, dates, the numbers observed, and what users said.
-3. Apply the playbook's thresholds as written. Say plainly which outcome was reached (double down, iterate or move on), even if it's disappointing. The thresholds were set in advance so that a hopeful reading can't override them. Break the numbers down by segment and channel, and call out any segment that repeats far more than the rest (`references/probe-design.md` section 3).
+3. Apply the playbook's thresholds as written and say plainly which outcome was reached (double down, iterate or move on), even if it's disappointing; they were set in advance so a hopeful reading can't override them. Break the numbers down by segment and channel, and call out any segment that repeats far more than the rest (`references/probe-design.md` section 3).
 4. If these are opening-round results, apply the focus rule from `final.json` and name the focus area. Recommend switching off the other opening probes unless one costs nothing to leave live and is still collecting an asset.
 5. Use the pivot map to propose the next probe. If the result matches no row, design one new probe using `references/probe-design.md`.
 6. If more than 4 weeks have passed since the run, run a quick fresh search for competitor and incumbent launches in the area before recommending a move.
@@ -165,12 +162,12 @@ The build-measure-pivot loop continues after the report. When the user comes bac
 
 ## What this skill can and cannot conclude
 
-Desk research cannot establish whether users will adopt a product or pay for it. Probes can. So the skill doesn't claim a winner. It ranks where to start and what to try first, and the opening round's focus rule and each finalist's thresholds are the decision rule for what happens next. Investor criteria are used as a screen for what tends to work, not as a forecast: an area can score well on every one and still find no demand. Scores are relative to the builder profile in `scope.md`: an area knocked out for its operating load might suit a builder willing to run a service.
+Desk research cannot establish whether users will adopt a product or pay for it; probes can. So the skill doesn't claim a winner. It ranks where to start and what to try first, and the focus rule and thresholds decide what happens next. An area can score well on every criterion and still find no demand. Scores are relative to the builder profile in `scope.md`: an area knocked out for its operating load might suit a builder willing to run a service.
 
-The smoke test, if run, gives an indicative accuracy number on public or synthetic data. It shows whether the core AI task is plausible. It does not prove the product.
+The smoke test, if run, gives an indicative accuracy number on public or synthetic data. It shows whether the core AI task is plausible, not that the product works.
 
 ## Data handling
 
-Sub-agents search the public web. Scope descriptions can contain internal context, such as a scope about the user's own company's operations. Put only generic, public framing into search queries, never internal names, figures or plans. The smoke test uses public or synthetic data only. If it needs an API key, it reads one already set in the environment. It never asks the user to paste a key and never prints one.
+Sub-agents search the public web, and scope descriptions can contain internal context. Put only generic, public framing into search queries, never internal names, figures or plans. The smoke test uses public or synthetic data only. If it needs an API key, it reads one already set in the environment; it never asks the user to paste a key and never prints one.
 
 This skill designs probes. It never launches them: it does not post to communities, publish listings, sign up for services or spend money. The user runs every probe.

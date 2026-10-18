@@ -1,6 +1,6 @@
 # Probe design (Stage 6)
 
-A probe is a small, time-boxed experiment that puts something real in front of an area's users and measures what they do. The aim is to learn what the market wants as cheaply as possible, not to launch a company. Each probe answers one question in the area's learning agenda, and its result decides the next move.
+A probe is a small, time-boxed experiment that puts something real in front of an area's users and measures what they do. Each probe answers one question in the area's learning agenda, and its result decides the next move.
 
 Search for every time-sensitive point (marketplace rules and review times, platform terms, model prices, conversion benchmarks); `freshness.md` section 2 lists them. Tag evidence as `[F]`, `[I]`, `[A]` or `[M]`.
 
@@ -48,7 +48,7 @@ Strongest first. A continue decision (double down or iterate) must rest on a sig
 
 Two ways AI probes mislead, and how to read past them:
 
-- AI tourists. New AI tools attract people who try anything once and leave. Investors now rebase retention to month 3 and treat that as the committed base (`vc-principles.md`). Probes are shorter, so measure repeat use from week 2 onwards among users who activated, and ignore the launch-week spike when setting thresholds.
+- AI tourists. New AI tools attract people who try anything once and leave. Measure repeat use from week 2 onwards among users who activated, and ignore the launch-week spike when setting thresholds.
 - Averages hide the well. Break every metric down by segment and channel. One segment that repeats far more than the rest is the most valuable thing a probe can find: it says who wants this right now, and the next probe should narrow to them. A flat, uniformly weak curve across every segment is a move-on signal, not an iterate.
 
 ## 4. Thresholds
@@ -115,7 +115,7 @@ Both specialists' files have these parts:
 
 ## 8. The opening round
 
-Investors pick by conviction because they can't run experiments cheaply. This builder can, so the run lets the market choose between finalists. The judge picks one opening probe per finalist area (at most the builder's parallel-probe limit) and runs them side by side over the same time box. Opening probes should be the cheapest type that can reach at least the activation rung, so they can be compared like for like.
+The run lets the market choose between finalists. The judge picks one opening probe per finalist area (at most the builder's parallel-probe limit) and runs them side by side over the same time box. Opening probes should be the cheapest type that can reach at least the activation rung, so they can be compared like for like.
 
 The focus rule, written before launch:
 1. Focus on the area whose opening probe reached double down. If more than one did, pick the one whose best signal sits higher on the ladder, then the one with a standout segment, then the higher #9 founder fit.

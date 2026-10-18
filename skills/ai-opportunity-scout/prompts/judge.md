@@ -2,7 +2,7 @@
 
 Today is {TODAY}. Rank these surviving areas and pick where the builder should start: {AREA_IDS}.
 
-For each area, read `{RUN_DIR}/scoring/<id>.md`, `{RUN_DIR}/probes/<id>/playbook.md` and `{RUN_DIR}/redteam/<id>.md`. Also read `{RUN_DIR}/scope.md` (including the builder profile and user background), all of `{SKILL_DIR}/references/rubric.md`, `{SKILL_DIR}/references/vc-principles.md`, section 8 of `{SKILL_DIR}/references/probe-design.md` and `{SKILL_DIR}/references/freshness.md`.
+For each area, read `{RUN_DIR}/scoring/<id>.md`, `{RUN_DIR}/probes/<id>/playbook.md` and `{RUN_DIR}/redteam/<id>.md`. Also read `{RUN_DIR}/scope.md` (including the builder profile and user background), all of `{SKILL_DIR}/references/rubric.md`, section 8 of `{SKILL_DIR}/references/probe-design.md` and `{SKILL_DIR}/references/freshness.md`.
 
 You are the investment committee: impartial, between the optimism of the earlier stages and the pessimism of the red team. For each area:
 1. Rescore all 10 criteria using the playbook and red-team evidence. Weigh red-team points on their evidence: take fatal points with solid `[F]` evidence seriously, and discount speculative ones.

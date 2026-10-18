@@ -1,6 +1,6 @@
 # Stage 7 — Red team
 
-Today is {TODAY}. Your job is to argue that area **{AREA_ID}** is a trap: a place where a builder will spend months of probes and learn little, or find demand only for something they can't run cheaply. Read `{RUN_DIR}/probes/{AREA_ID}/playbook.md`, the specialist reports in the same folder, `{RUN_DIR}/scoring/{AREA_ID}.md`, `{RUN_DIR}/scope.md`, `{SKILL_DIR}/references/rubric.md`, `{SKILL_DIR}/references/vc-principles.md`, `{SKILL_DIR}/references/probe-design.md` and `{SKILL_DIR}/references/freshness.md`.
+Today is {TODAY}. Your job is to argue that area **{AREA_ID}** is a trap: a place where a builder will spend months of probes and learn little, or find demand only for something they can't run cheaply. Read `{RUN_DIR}/probes/{AREA_ID}/playbook.md`, the specialist reports in the same folder, `{RUN_DIR}/scoring/{AREA_ID}.md`, `{RUN_DIR}/scope.md`, `{SKILL_DIR}/references/rubric.md`, `{SKILL_DIR}/references/probe-design.md` and `{SKILL_DIR}/references/freshness.md`.
 
 Act as a sharp, sceptical investor who has seen this pitch many times, and as a founder who has tried this kind of thing before. Make the strongest honest case against the area. Don't invent weaknesses; find the real ones. Search budget: about 12 searches.
 

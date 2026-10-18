@@ -2,7 +2,7 @@
 
 Each Stage 2 generator works through exactly one lens. Different lenses approach the scope from different angles, so the seed pool covers more ground and duplicates less. When several lenses land on the same job, that is evidence the job is real, and clustering uses it. A generator may produce a seed that also fits another lens; that's fine.
 
-The founder lens produces twice as many seeds as the others. At least 70% of YC's top 100 companies came from ideas the founders met in their own work, while brainstorming tends to land on the same tarpit ideas everyone else has (`vc-principles.md`).
+The founder lens produces twice as many seeds as the others, because ideas met in the builder's own work outperform brainstormed ones, which tend to land on the same tarpits everyone else has.
 
 All lenses share two filters:
 - The seed must exploit something current AI can do that existing solutions don't. Use `landscape.md`, not your memory, for what current AI can do.
