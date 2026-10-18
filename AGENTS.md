@@ -36,7 +36,7 @@ Users install a skill by symlinking or copying `skills/<skill-name>/` into `~/.c
 
 ### Cross-file consistency
 
-Skills here are tightly cross-referenced. Stage numbers, file paths, criterion numbers (#1 to #9), depth counts and knockout rules appear in SKILL.md, prompts, references and templates. When you change one, grep the skill folder and update every occurrence:
+Skills here are tightly cross-referenced. Stage numbers, file paths, criterion numbers (#1 to #10), depth counts and knockout rules appear in SKILL.md, prompts, references and templates. When you change one, grep the skill folder and update every occurrence:
 
 ```bash
 grep -rn "probes/" skills/ai-opportunity-scout/

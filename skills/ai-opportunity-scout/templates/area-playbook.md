@@ -3,7 +3,7 @@
 Date: {TODAY} · Search status: ok | partial | unavailable · Verdict: **explore | explore with concerns | knockout**
 
 ## 1. Area thesis
-Two or three sentences: the segment, the recurring job, and the shift that makes AI useful for it now. Then one paragraph: why this is a good place for this builder to start, and the single biggest reason it might not be. End with an overall confidence (L/M/H) and why.
+Two or three sentences: the segment, the urgent sub-segment the first probe targets, the recurring job, the shift that makes AI useful for it now, and the insight. Then one paragraph: why this is a good place for this builder to start, and the single biggest reason it might not be. End with an overall confidence (L/M/H) and why.
 
 | Dimension | Specialist score (1–5) | One-line rationale |
 |---|---|---|
@@ -28,7 +28,7 @@ The 3 questions this area must answer, in the order the probes test them. For ex
 | P2 | | | | | | | | | | | | |
 | P3 | | | | | | | | | | | | |
 
-For each probe, a short paragraph: what the user sees, the stack, what it reuses from the previous probe, what it teaches even if it fails, and any low-ops rule it breaks (with the reason).
+For each probe, a short paragraph: what the user sees, the stack, what it reuses from the previous probe, what it teaches and the asset it leaves behind even if it fails, and any low-ops rule it breaks (with the reason). Mark the probe best suited to the opening round (`probe-design.md` section 8).
 
 ## 5. Pivot map
 | If you see | It probably means | Next move |

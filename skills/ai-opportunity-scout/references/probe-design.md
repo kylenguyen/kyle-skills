@@ -46,6 +46,11 @@ Strongest first. A continue decision (double down or iterate) must rest on a sig
 5. Sign-up or waitlist.
 6. Views, clicks, likes or stars.
 
+Two ways AI probes mislead, and how to read past them:
+
+- AI tourists. New AI tools attract people who try anything once and leave. Investors now rebase retention to month 3 and treat that as the committed base (`vc-principles.md`). Probes are shorter, so measure repeat use from week 2 onwards among users who activated, and ignore the launch-week spike when setting thresholds.
+- Averages hide the well. Break every metric down by segment and channel. One segment that repeats far more than the rest is the most valuable thing a probe can find: it says who wants this right now, and the next probe should narrow to them. A flat, uniformly weak curve across every segment is a move-on signal, not an iterate.
+
 ## 4. Thresholds
 
 Set every threshold before the probe launches. Once you have seen the numbers, it is too easy to find reasons why a weak result is encouraging.
@@ -71,10 +76,12 @@ Check every probe against these rules. A probe that breaks one must say so and g
 ## 6. Sequencing and the pivot map
 
 - The first probe should ship within 7 days of starting and need no prior probe.
+- Aim the first probe at the area's `urgent_subsegment`, not the whole segment. A narrow group that urgently wants the job gives clearer signal than a broad group that mildly wants it.
 - Order the probes so that the riskiest assumption is tested first in the cheapest way, usually problem resonance, then demand for a promise, then use, then payment.
 - Each probe should reuse something from the one before: audience, code, data or wording. This is what keeps pivots inside an area cheap.
 - At most 3 probes live at once, per the builder profile.
 - The pivot map lists the likely signals and the move each triggers. Draw the moves from the area's seeds and `adjacent_shapes`: for example, "users love the output but won't connect their accounts → switch from integration to upload-based tool", or "the developer segment activates, the finance segment doesn't → retarget the next probe at developers".
+- Each probe should leave an asset behind even if it fails: an audience list, search rankings, a labelled dataset, an eval set or reusable code. Name it in "Teaches even if it fails".
 - Exit criteria: say when to leave the area entirely, for example "three probes in a row land on move on" or "no channel reaches 100 target users in 4 weeks".
 
 ## 7. Specialist output format
@@ -105,3 +112,14 @@ Both specialists' files have these parts:
 5. **Data and safety:** what user data each shape touches, data protection duties (PDPA, GDPR or local equivalents), and how to keep errors low-stakes.
 6. **Quality bar:** how good the output must be for the probe to be useful, and the cheapest way to check before launch. Include the smoke test if it is enabled.
 7. **Reuse across probes:** components that make later probes cheaper, such as shared ingestion, prompts, evals or a landing-page kit.
+
+## 8. The opening round
+
+Investors pick by conviction because they can't run experiments cheaply. This builder can, so the run lets the market choose between finalists. The judge picks one opening probe per finalist area (at most the builder's parallel-probe limit) and runs them side by side over the same time box. Opening probes should be the cheapest type that can reach at least the activation rung, so they can be compared like for like.
+
+The focus rule, written before launch:
+1. Focus on the area whose opening probe reached double down. If more than one did, pick the one whose best signal sits higher on the ladder, then the one with a standout segment, then the higher #9 founder fit.
+2. If none reached double down but some reached iterate, rerun the strongest one once with its one change, and drop the rest.
+3. If every opening probe lands on move on, check the sample: if any probe missed its minimum sample, iterate on the channel once. Otherwise go to the next ranked areas, or rerun the scout with a changed scope.
+
+Keep only the focus area's probe running afterwards, unless another costs nothing to leave live and is still collecting an asset.

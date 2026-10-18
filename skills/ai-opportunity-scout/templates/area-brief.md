@@ -2,19 +2,25 @@
 
 **In one line:** the segment, the recurring job and the shift.
 
-**Why now:** the specific recent change (a capability, a price, a platform or a rule) that opens the area, with a dated source.
+**Insight:** what this builder sees here that funded teams and incumbents don't, or "none found".
 
-**Who and where:** who the users are, how often the job recurs for them, and the surfaces where they can be reached, with rough reach.
+**Why now:** the specific recent change (a capability, a price, a platform or a rule) that opens the area, with a dated source, and how long the window looks.
+
+**Why this builder:** the founder fit, and which of the three edges (speed, low operating load, patience) pays off here.
+
+**Who and where:** who the users are, the sub-segment that wants this most urgently, how often the job recurs for them, and the surfaces where they can be reached, with rough reach.
 
 **What's inside:** 4–6 product shapes the area holds (seeds and adjacent shapes). This is the pivot room.
 
-**Why a small builder has room:** what incumbents and providers cover today, and the part they leave open.
+**Why a small builder has room:** what incumbents, providers and funded startups cover today, the part they leave open, and who tried this before and why they stalled.
 
 **Operating load:** what a live product here needs from you each week, and what could make that grow.
 
-| Criterion | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
-|---|---|---|---|---|---|---|---|---|---|
-| Score | | | | | | | | | |
+| Criterion | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Score | | | | | | | | | | |
+
+**What would have to be true:** the two or three beliefs that, if the probes confirm them, make this area worth two years of focus.
 
 **First probes:**
 | Probe | Build days | Channel | Signal metric | Double down if | Move on if | Time box |

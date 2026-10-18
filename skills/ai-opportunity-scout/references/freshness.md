@@ -26,7 +26,8 @@ Look these up. Do not answer them from memory:
 | Model provider product moves | First-party products, agents and integrations that could absorb the idea | 3 months |
 | Regulation and compliance | AI-specific laws, sector rules, data protection guidance and enforcement | 12 months; check for anything newer |
 | Market data | Labour rates, salaries, outsourcing costs, market sizes, adoption surveys | 24 months; prefer newer |
-| Pricing of existing solutions | What users pay today for tools or services, including self-serve price points | 12 months |
+| Capital flows | Funding rounds, accelerator batch themes and published requests for startups (such as YC's) in the scope | 6 months |
+| Pricing of existing solutions | What users pay today for tools or services, including self-serve price points and freelancer or agency rates | 12 months |
 | Distribution surfaces | Marketplace and app-store listing rules, review times, install counts, community promotion rules | 12 months |
 | Conversion and retention benchmarks | Landing-page conversion, trial-to-paid, extension or plugin retention | 24 months; prefer newer |
 
@@ -51,7 +52,7 @@ Scoring consequence (also stated in the rubric): a criterion supported only by `
 
 - Prefer primary sources: vendor pricing pages, official changelogs and release notes, regulator sites, company announcements, filings.
 - Use secondary sources (news, analyst posts, review sites, forums) for signal, and cross-check anything that moves a score.
-- Search for disconfirming evidence too. For example, search "<idea> startup", "<incumbent> AI <feature>" and "<task> AI accuracy problems", not only evidence that supports the idea.
+- Search for disconfirming evidence too. For example, search "<idea> startup", "<incumbent> AI <feature>", "<task> AI accuracy problems" and "<idea> shut down" or "post-mortem", not only evidence that supports the idea.
 - When sources conflict, prefer the newer primary source and note the conflict.
 - Put only generic, public framing into search queries. Never include internal company names, figures or plans from the scope.
 

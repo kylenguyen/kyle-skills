@@ -4,12 +4,12 @@ Run: {DATE} · Scope: {SCOPE} · Depth: {DEPTH} · Search status: {SEARCH_STATUS
 
 | Stage | In | Out |
 |---|---|---|
-| Seeds generated (5 lenses) | — | |
+| Seeds generated (6 lenses) | — | |
 | Clustered into areas | seeds | areas (+ unclustered seeds) |
 | Area screen | | |
 | Area scoring | | |
 | Probe design | | |
-| Red team + judge | | primary + alternates |
+| Red team + judge | | primary + alternates + opening round |
 
 ### Score movement (probe-design areas)
 | Area | Stage 5 score | Final score | Biggest change and why |

@@ -18,6 +18,7 @@ Generators write an array of these objects. A seed is a concrete product shape: 
   "frequency": "daily | weekly | monthly | quarterly | yearly",
   "ai_capability": "The current AI capability that makes this work now",
   "why_now": "What changed recently: a capability, a price, a platform, a rule or a behaviour",
+  "insight": "What a well-placed builder knows that outsiders miss, or 'none'",
   "prototype_shape": "content | fake-door | tool | product | add-on | developer | concierge",
   "channel_guess": "Where these users could be reached without a sales call",
   "ops_profile": "What a human must do per user once it is live, or 'none'",
@@ -29,7 +30,7 @@ Generators write an array of these objects. A seed is a concrete product shape: 
 ```
 
 Rules:
-- ID prefixes by lens: `wf-`, `cap-`, `gap-`, `fdr-`, `srf-`, followed by a two-digit number.
+- ID prefixes by lens: `wf-`, `cap-`, `gap-`, `fdr-`, `prv-`, `srf-`, followed by a two-digit number.
 - `prototype_shape` uses the probe types in `probe-design.md` section 2.
 - `evidence` needs at least one entry tagged `F` that shows the job or pain is real. A seed with no sourced anchor is usually a hunch.
 - Keep each field short. The schema is for clustering and comparing, not pitching.
@@ -45,7 +46,11 @@ The main agent writes `areas.json` as an array of these objects in Stage 3.
   "thesis": "Two sentences: the segment, the recurring job they struggle with, and the shift that makes AI useful for it now.",
   "segment": "Who the users are",
   "job": "The recurring job",
-  "shift": "What changed recently",
+  "shift": "What changed recently, with a date",
+  "insight": "The non-obvious belief behind the area: what this builder sees that funded teams and incumbents don't",
+  "urgent_subsegment": "Who wants this most urgently right now; the first probe targets them",
+  "proxies": ["Similar models working in another region, segment or industry, with a source"],
+  "prior_attempts": ["Startups or products that tried this and stalled, and why, if known"],
   "seeds": ["wf-03", "gap-07", "srf-02"],
   "lenses": ["workflow", "gap", "surface"],
   "adjacent_shapes": ["Product shapes that fit the area but no generator proposed"],
@@ -57,4 +62,5 @@ The main agent writes `areas.json` as an array of these objects in Stage 3.
 Rules:
 - Area IDs are `area-` followed by a two-digit number.
 - `thin` is true when the area has fewer than 3 seeds.
+- `insight`, `proxies` and `prior_attempts` may be rough at Stage 3; the analyst fills the gaps. An empty `insight` is allowed, but say so, because an area with no insight is usually a crowded one.
 - Seeds that fit no area are listed in `areas.json` under a final object `{"id": "unclustered", "seeds": [...]}`.

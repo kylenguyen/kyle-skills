@@ -6,7 +6,7 @@ A collection of [Agent Skills](https://docs.claude.com/en/docs/claude-code/skill
 
 | Skill | What it does |
 |---|---|
-| [ai-opportunity-scout](skills/ai-opportunity-scout/SKILL.md) | Finds AI product areas worth exploring within a given scope and designs cheap, low-maintenance prototype probes to test each one. Generates seed ideas, clusters them into areas wide enough to pivot within, scores the areas on signal speed, operating load and pivot room, and recommends a starting area with a sequenced probe plan, signal thresholds and a pivot map. Orchestrates roughly 20–33 sub-agents depending on depth. |
+| [ai-opportunity-scout](skills/ai-opportunity-scout/SKILL.md) | Finds the best AI product area for a fast, low-maintenance, patient builder to focus on next, and designs cheap prototype probes to test it. Generates seed ideas, clusters them into areas wide enough to pivot within, and scores them the way early-stage investors such as Y Combinator screen startups, adapted to the builder's edges. Recommends a primary area, an opening round of parallel probes with a focus rule, signal thresholds and a pivot map. Orchestrates roughly 21–34 sub-agents depending on depth. |
 
 ## Installation
 
@@ -70,11 +70,11 @@ Describe what you want in plain language; Claude picks the skill from its descri
 Find AI business opportunities in last-mile grocery logistics for SEA retailers. Depth: quick.
 ```
 
-`ai-opportunity-scout` confirms the scope, your builder profile (build speed, operating-load ceiling, return horizon, channels) and the approximate sub-agent count before it spends any tokens. It then writes all outputs to `./opportunity-scout-runs/<YYYY-MM-DD>-<scope-slug>/` in your current directory. The final `report.md` names a primary area and the first probe to ship, gives a brief for each area with its probe plan and pivot map, and includes a funnel report showing why every other area was dropped.
+`ai-opportunity-scout` confirms the scope, your builder profile (build speed, operating-load ceiling, return horizon, channels) and the approximate sub-agent count before it spends any tokens. It then writes all outputs to `./opportunity-scout-runs/<YYYY-MM-DD>-<scope-slug>/` in your current directory. The final `report.md` names a primary area and the first probe to ship, sets out an opening round of parallel probes across the finalists with a rule for choosing which one to focus on, gives a brief for each area with its probe plan and pivot map, and includes a funnel report showing why every other area was dropped.
 
 When you have run a probe, come back with the results (for example "P1 in the primary area got 140 visitors and 6 pre-orders"). The skill applies the thresholds set in the playbook and proposes the next move from the pivot map, without rerunning the funnel.
 
-Token cost scales with depth (`quick` ~20 sub-agents, `standard` ~26, `deep` ~33). Start with `quick` to try it out.
+Token cost scales with depth (`quick` ~21 sub-agents, `standard` ~27, `deep` ~34). Start with `quick` to try it out.
 
 ## Data handling
 

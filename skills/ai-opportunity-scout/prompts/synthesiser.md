@@ -13,7 +13,7 @@ The specialists worked in parallel and did not see each other's reports, so thei
 For each conflict, decide which side the evidence supports (prefer newer, primary, `[F]`-tagged evidence), adjust the affected probes, and say how the change affects the plan. If a conflict can't be resolved from the evidence, make it the question of an early probe.
 
 Then build the playbook:
-1. Write the learning agenda: the 3 questions this area must answer, in order.
+1. Write the learning agenda: the 3 questions this area must answer, in order. The first is usually "does the urgent sub-segment feel this job often enough to act?"
 2. Design 3–5 probes, sequenced per `probe-design.md` section 6, each with every field from section 1. The first must ship within 7 days. Check every probe against the low-ops design rules.
 3. Write the pivot map, drawing moves from the area's seeds and `adjacent_shapes`.
 4. Write the exit criteria for the whole area.
