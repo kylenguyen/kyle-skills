@@ -7,7 +7,7 @@ AI capability, model pricing and the competitive landscape change faster than an
 - "Inference makes this uneconomic" is false because prices fell several-fold.
 - "This is defensible" is false because the incumbent shipped it as a free feature.
 
-Each of these errors can promote a dead idea or kill a live one. So every agent in this skill follows the rules below.
+Each of these errors can promote a dead area or kill a live one. So every agent in this skill follows the rules below.
 
 ## 1. Know today's date and distrust your sense of "latest"
 
@@ -26,13 +26,15 @@ Look these up. Do not answer them from memory:
 | Model provider product moves | First-party products, agents and integrations that could absorb the idea | 3 months |
 | Regulation and compliance | AI-specific laws, sector rules, data protection guidance and enforcement | 12 months; check for anything newer |
 | Market data | Labour rates, salaries, outsourcing costs, market sizes, adoption surveys | 24 months; prefer newer |
-| Pricing of existing solutions | What buyers pay today for tools or services | 12 months |
+| Pricing of existing solutions | What users pay today for tools or services, including self-serve price points | 12 months |
+| Distribution surfaces | Marketplace and app-store listing rules, review times, install counts, community promotion rules | 12 months |
+| Conversion and retention benchmarks | Landing-page conversion, trial-to-paid, extension or plugin retention | 24 months; prefer newer |
 
 If the only source you can find is older than its limit, you may use it, but tag it `stale` and lower your confidence.
 
 ## 3. What model knowledge is still fine for
 
-Use your own knowledge for stable things: business frameworks, how enterprise procurement generally works, typical workflow shapes in a domain, engineering practice, how to design an eval. Tag it `[M]` where it supports a score, so readers know it was not looked up.
+Use your own knowledge for stable things: business frameworks, typical workflow shapes in a domain, engineering practice, how to design an eval or an experiment. Tag it `[M]` where it supports a score, so readers know it was not looked up.
 
 ## 4. Evidence tags
 
@@ -53,14 +55,18 @@ Scoring consequence (also stated in the rubric): a criterion supported only by `
 - When sources conflict, prefer the newer primary source and note the conflict.
 - Put only generic, public framing into search queries. Never include internal company names, figures or plans from the scope.
 
+### Search budget
+
+Each prompt gives an approximate search budget, because per-agent search limits are real and a run degrades when agents exhaust them on low-value lookups. Spend searches first on the facts that could trigger a knockout or move a score by 2 or more, then on the rest. If you hit a limit, stop searching, record `search: partial`, tag what you couldn't check, and finish the output rather than leaving it incomplete.
+
 ## 6. When search is unavailable or fails
 
 Do not quietly fall back to memory. Instead:
 
 1. Record `search: unavailable` (or `partial`) in your output and in `run-log.md`.
 2. Tag the affected claims `[M]` or `[A]`. The scoring caps then apply automatically.
-3. The final report must say in its summary that the run is degraded and which conclusions are most at risk. Usually these are #2, #4, #6 and the competitor maps.
+3. The final report must say in its summary that the run is degraded and which conclusions are most at risk. Usually these are #2 (AI step change), #6 (room for a small builder), the channel rules and the probe thresholds.
 
 ## 7. Re-check before you conclude
 
-Stage 1 snapshots the landscape at the start of the run. The red team (Stage 6) runs a fresh search for competitor and incumbent launches for each finalist, because a run can span days, and launches cluster. The judge must account for anything new the red team finds.
+Stage 1 snapshots the landscape at the start of the run. The red team (Stage 7) runs a fresh search for competitor and incumbent launches for each shortlisted area, because a run can span days, and launches cluster. The judge must account for anything new the red team finds.

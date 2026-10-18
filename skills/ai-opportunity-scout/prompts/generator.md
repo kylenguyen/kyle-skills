@@ -1,16 +1,20 @@
-# Stage 2 — Idea generator ({LENS})
+# Stage 2 — Seed generator ({LENS})
 
-Today is {TODAY}. Generate {N} AI business-opportunity candidates for this scope, working only through the **{LENS}** lens.
+Today is {TODAY}. Generate {N} seed ideas for AI products in this scope, working only through the **{LENS}** lens.
 
 Read first:
-- `{RUN_DIR}/scope.md`: scope, buyer, region, user background, exclusions
-- `{RUN_DIR}/landscape.md`: current AI capability, pricing, incumbents and startups. Treat it as your source of current facts, not your memory.
-- `{SKILL_DIR}/references/lenses.md`: your lens section
-- `{SKILL_DIR}/references/idea-schema.md`: the output format
-- `{SKILL_DIR}/references/freshness.md`: evidence tagging
+- `{RUN_DIR}/scope.md`: scope, target users, region, user background, builder profile, exclusions
+- `{RUN_DIR}/landscape.md`: current AI capability, pricing, incumbents, small products and distribution surfaces. Treat it as your source of current facts, not your memory.
+- `{SKILL_DIR}/references/lenses.md`: your lens section and the shared filters
+- `{SKILL_DIR}/references/idea-schema.md`: the seed format
+- `{SKILL_DIR}/references/freshness.md`: evidence tagging and search budget
 
-What a good candidate looks like: it replaces costly manual work (not a nicer UI on existing software), and it uses a capability that current AI has but existing solutions don't exploit. Skip ideas that `landscape.md` shows are already shipped by an incumbent or model provider, or already crowded with funded startups, unless you have a sharply different angle. If so, state the angle.
+Seeds are raw material. The next stage groups them into opportunity areas and the run evaluates the areas, not the seeds. So breadth and variety matter more than polish, and you don't need to prove a seed is a business. What makes a useful seed: a concrete product shape a builder could prototype in a week or two, for a recurring job that real people struggle with, using something current AI does well.
 
-Use web search to anchor each idea with at least two sourced facts: for example the cost of the labour replaced, evidence the capability works, or buyer complaints. Be quick; later gates do the deep research. Breadth and variety matter more here than polish. Avoid producing many variants of the same idea.
+Vary the seeds along two axes: who the users are and what job is being done. Several seeds that serve the same users' job in different shapes (a tool, an add-on, a fake door) are useful, because they show how much room there is to pivot. Many near-copies of "AI copilot for X" are not.
 
-Write a JSON array to `{RUN_DIR}/candidates/lens-{LENS}.json`. Return the count and your 3 most promising titles.
+Skip seeds that `landscape.md` shows are already done well and free by tools the users already have, unless you have a sharply different angle; if so, state it. Be honest in `ops_profile`: if a seed needs a human to review each user's output, say so.
+
+Use web search to anchor each seed with at least one sourced fact that shows the job or pain is real, such as a complaint thread, a job posting, a paid alternative or a marketplace listing. Be quick. Search budget: about 8 searches in total.
+
+Write a JSON array to `{RUN_DIR}/seeds/lens-{LENS}.json`. Return the count and the 3 jobs that came up most often.

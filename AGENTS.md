@@ -30,16 +30,16 @@ Users install a skill by symlinking or copying `skills/<skill-name>/` into `~/.c
 ### Prompt templates (`prompts/`)
 
 - One file per sub-agent role, titled `# Stage <n> — <role>`.
-- Use `{UPPER_SNAKE}` placeholders. The shared ones are `{SKILL_DIR}` (absolute path to the skill), `{RUN_DIR}` and `{TODAY}`; add stage-specific ones (`{IDEA_ID}`, `{LENS}`, `{N}`) as needed. When you add a placeholder, update the instructions in SKILL.md that fill it.
+- Use `{UPPER_SNAKE}` placeholders. The shared ones are `{SKILL_DIR}` (absolute path to the skill), `{RUN_DIR}` and `{TODAY}`; add stage-specific ones (`{AREA_ID}`, `{LENS}`, `{N}`) as needed. When you add a placeholder, update the instructions in SKILL.md that fill it.
 - Each prompt lists the files to read first, the exact output path, and what to return to the orchestrator (a short summary, not the full output).
 - Reference shared policies by path (for example `{SKILL_DIR}/references/freshness.md`) rather than copying them into each prompt.
 
 ### Cross-file consistency
 
-Skills here are tightly cross-referenced. Stage numbers, file paths, criterion numbers (#1 to #10), depth counts and knockout rules appear in SKILL.md, prompts, references and templates. When you change one, grep the skill folder and update every occurrence:
+Skills here are tightly cross-referenced. Stage numbers, file paths, criterion numbers (#1 to #9), depth counts and knockout rules appear in SKILL.md, prompts, references and templates. When you change one, grep the skill folder and update every occurrence:
 
 ```bash
-grep -rn "gate3/" skills/ai-opportunity-scout/
+grep -rn "probes/" skills/ai-opportunity-scout/
 ```
 
 ## Writing style

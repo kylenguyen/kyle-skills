@@ -1,17 +1,23 @@
-# Stage 5 — Execution dossier synthesiser
+# Stage 6 — Area playbook synthesiser
 
-Today is {TODAY}. Four specialists have assessed idea **{IDEA_ID}**. Their reports are in `{RUN_DIR}/gate3/{IDEA_ID}/`: `business.md`, `technical.md`, `operations.md`, `gtm-risk.md`.
+Today is {TODAY}. Two specialists have designed candidate probes for area **{AREA_ID}**. Their reports are in `{RUN_DIR}/probes/{AREA_ID}/`: `channel.md` and `build.md`.
 
-Also read `{RUN_DIR}/gate2/{IDEA_ID}.md`, `{SKILL_DIR}/references/rubric.md` (execution knockouts and criterion #10), `{SKILL_DIR}/templates/execution-dossier.md` and `{SKILL_DIR}/references/freshness.md`.
+Also read `{RUN_DIR}/areas.json` (ID {AREA_ID}), `{RUN_DIR}/scoring/{AREA_ID}.md`, `{RUN_DIR}/scope.md` (including the builder profile), `{SKILL_DIR}/references/probe-design.md`, `{SKILL_DIR}/references/rubric.md`, `{SKILL_DIR}/templates/area-playbook.md` and `{SKILL_DIR}/references/freshness.md`.
 
-The specialists worked in parallel and did not see each other's reports, so their assumptions will conflict. Your most important job is to find and resolve those conflicts. Stapling the four reports together is not enough. Compare every specialist's **Key numbers** and claims. Typical conflicts:
-- business assumes fast onboarding, but operations finds weeks of integration per customer;
-- business margin uses fewer tokens per task than technical estimates;
-- the revenue path assumes a sales cycle shorter than go-to-market found;
-- the MVP timeline ignores certifications that go-to-market says are needed before the first sale.
+The specialists worked in parallel and did not see each other's reports, so their assumptions will conflict. Your first job is to find and resolve those conflicts; stapling the two reports together is not enough. Compare their **Key numbers** and candidate probes. Typical conflicts:
+- channel's best surface is a marketplace, but build finds a review queue longer than the time box;
+- channel's strongest signal needs users to connect an account, but build finds the integration needs partner approval;
+- build's cheapest shape needs a human step per user, which breaks the operating-load ceiling;
+- channel expects a price point that build's running cost per user can't support, even with caps.
 
-For each conflict, decide which side the evidence supports (prefer newer, primary, `[F]`-tagged evidence), recompute any figures that depend on it, and say how the resolution changes the picture. If a conflict can't be resolved from the evidence, carry it into the assumptions still to validate.
+For each conflict, decide which side the evidence supports (prefer newer, primary, `[F]`-tagged evidence), adjust the affected probes, and say how the change affects the plan. If a conflict can't be resolved from the evidence, make it the question of an early probe.
 
-Check the execution knockouts across all four reports. Give a provisional criterion #10 score.
+Then build the playbook:
+1. Write the learning agenda: the 3 questions this area must answer, in order.
+2. Design 3–5 probes, sequenced per `probe-design.md` section 6, each with every field from section 1. The first must ship within 7 days. Check every probe against the low-ops design rules.
+3. Write the pivot map, drawing moves from the area's seeds and `adjacent_shapes`.
+4. Write the exit criteria for the whole area.
 
-Write `{RUN_DIR}/gate3/{IDEA_ID}/dossier.md` following the template. Return one line with the verdict (proceed, proceed with concerns, or knockout), a provisional score for #10, and the number of conflicts found.
+Check the area knockouts across both reports.
+
+Write `{RUN_DIR}/probes/{AREA_ID}/playbook.md` following the template. Return one line with the verdict (explore, explore with concerns, or knockout), the first probe and its build days, and the number of conflicts found.

@@ -1,15 +1,16 @@
-# Stage 6 — Red team
+# Stage 7 — Red team
 
-Today is {TODAY}. Your job is to argue that idea **{IDEA_ID}** will fail. Read `{RUN_DIR}/gate3/{IDEA_ID}/dossier.md`, the specialist reports in the same folder, `{RUN_DIR}/gate2/{IDEA_ID}.md`, `{SKILL_DIR}/references/rubric.md` and `{SKILL_DIR}/references/freshness.md`.
+Today is {TODAY}. Your job is to argue that area **{AREA_ID}** is a trap: a place where a builder will spend months of probes and learn little, or find demand only for something they can't run cheaply. Read `{RUN_DIR}/probes/{AREA_ID}/playbook.md`, the specialist reports in the same folder, `{RUN_DIR}/scoring/{AREA_ID}.md`, `{RUN_DIR}/scope.md`, `{SKILL_DIR}/references/rubric.md`, `{SKILL_DIR}/references/probe-design.md` and `{SKILL_DIR}/references/freshness.md`.
 
-Act as a sharp, sceptical investor or competitor. Make the strongest honest case against the idea. Don't invent weaknesses; find the real ones.
+Act as a sharp, sceptical founder who has tried this kind of thing before. Make the strongest honest case against the area. Don't invent weaknesses; find the real ones. Search budget: about 10 searches.
 
-1. **Fresh landscape check (required):** search again for competitors and incumbent or model-provider launches related to this idea, focusing on anything since `landscape.md` was written or not covered by it. New entrants, a feature announcement or a provider's new agent product can change the verdict. Tag findings with dates.
-2. **Attack the 90-day plan:** which milestone is most likely to slip or fail, and why?
-3. **Attack the weakest assumptions:** especially #2 (accuracy on real data), #3 (willingness to pay), #4 (incumbent response) and distribution.
-4. **The "feature, not a company" test:** describe concretely how a provider or incumbent would ship this in 6 months, and what would be left of the business.
-5. **Failure story:** a short, plausible story of how this company is dead in 18 months.
+1. **Fresh landscape check (required):** search again for competitors, small products and incumbent or model-provider launches in this area, focusing on anything since `landscape.md` was written or not covered by it. Tag findings with dates.
+2. **False signal:** which probe could pass its threshold without real demand behind it, and why? Look for curiosity sign-ups, launch-day spikes, a channel that only reaches early adopters, or thresholds set too low.
+3. **Hidden operating load:** where will human work creep in once real users arrive: edge cases, support, data clean-up, trust questions or requests for a person to check the output?
+4. **Ceiling:** is the area's pivot room real, or do all its shapes share one fatal dependency (one platform, one data source, one rule)?
+5. **Bundling:** describe concretely how a provider or incumbent would cover the core job in the next 6 months, and which probes would still be worth running.
+6. **Failure story:** a short, plausible story of 12 months spent in this area that ends with nothing worth continuing.
 
-Finish with the attacks you think are **fatal**, **serious** and **manageable**, and any criterion scores you think should drop, with reasons.
+Finish with the attacks you think are **fatal**, **serious** and **manageable**, any criterion scores you think should drop (with reasons), and any probe or threshold you would change.
 
-Write `{RUN_DIR}/gate4/{IDEA_ID}.md`. Return the single most damaging point in one line.
+Write `{RUN_DIR}/redteam/{AREA_ID}.md`. Return the single most damaging point in one line.

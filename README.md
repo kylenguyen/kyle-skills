@@ -6,7 +6,7 @@ A collection of [Agent Skills](https://docs.claude.com/en/docs/claude-code/skill
 
 | Skill | What it does |
 |---|---|
-| [ai-opportunity-scout](skills/ai-opportunity-scout/SKILL.md) | Generates AI-native business opportunities within a given scope, then narrows them through evidence-based gates, a four-specialist execution deep-dive and a red team down to the 3 strongest, each with a validation plan. Orchestrates roughly 30–70 sub-agents depending on depth. |
+| [ai-opportunity-scout](skills/ai-opportunity-scout/SKILL.md) | Finds AI product areas worth exploring within a given scope and designs cheap, low-maintenance prototype probes to test each one. Generates seed ideas, clusters them into areas wide enough to pivot within, scores the areas on signal speed, operating load and pivot room, and recommends a starting area with a sequenced probe plan, signal thresholds and a pivot map. Orchestrates roughly 20–33 sub-agents depending on depth. |
 
 ## Installation
 
@@ -70,9 +70,11 @@ Describe what you want in plain language; Claude picks the skill from its descri
 Find AI business opportunities in last-mile grocery logistics for SEA retailers. Depth: quick.
 ```
 
-`ai-opportunity-scout` confirms the scope and the approximate sub-agent count before it spends any tokens, then writes all outputs to `./opportunity-scout-runs/<YYYY-MM-DD>-<scope-slug>/` in your current directory. The final `report.md` contains the top 3 ideas, one-pagers, score movement and a funnel report showing why every other idea was killed.
+`ai-opportunity-scout` confirms the scope, your builder profile (build speed, operating-load ceiling, return horizon, channels) and the approximate sub-agent count before it spends any tokens. It then writes all outputs to `./opportunity-scout-runs/<YYYY-MM-DD>-<scope-slug>/` in your current directory. The final `report.md` names a primary area and the first probe to ship, gives a brief for each area with its probe plan and pivot map, and includes a funnel report showing why every other area was dropped.
 
-Token cost scales with depth (`quick` ~30 sub-agents, `standard` ~45, `deep` ~70). Start with `quick` to try it out.
+When you have run a probe, come back with the results (for example "P1 in the primary area got 140 visitors and 6 pre-orders"). The skill applies the thresholds set in the playbook and proposes the next move from the pivot map, without rerunning the funnel.
+
+Token cost scales with depth (`quick` ~20 sub-agents, `standard` ~26, `deep` ~33). Start with `quick` to try it out.
 
 ## Data handling
 

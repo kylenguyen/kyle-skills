@@ -4,20 +4,25 @@ Run: {DATE} · Scope: {SCOPE} · Depth: {DEPTH} · Search status: {SEARCH_STATUS
 
 | Stage | In | Out |
 |---|---|---|
-| Generated (5 lenses) | — | |
-| After dedupe | | |
-| Gate 1 quick kill | | |
-| Gate 2 evidence scoring | | |
-| Gate 3 execution deep-dive | | |
-| Gate 4 red team + final | | 3 |
+| Seeds generated (5 lenses) | — | |
+| Clustered into areas | seeds | areas (+ unclustered seeds) |
+| Area screen | | |
+| Area scoring | | |
+| Probe design | | |
+| Red team + judge | | primary + alternates |
 
-### Score movement (deep-dive ideas)
-| Idea | Gate 2 score | Final score | Biggest change and why |
+### Score movement (probe-design areas)
+| Area | Stage 5 score | Final score | Biggest change and why |
 |---|---|---|---|
 
-### All ideas and where they stopped
-| ID | Title | Lens | Stopped at | Reason |
-|---|---|---|---|---|
+### All areas and where they stopped
+| ID | Name | Seeds | Lenses | Stopped at | Reason |
+|---|---|---|---|---|---|
 
-### Kill-reason patterns
-2–4 lines: what killed most ideas in this scope (e.g. "incumbents already shipped AI drafting", "accuracy bar too high"). This is useful context for the next run in the same scope.
+### Seeds by area
+| Area | Seed IDs and titles |
+|---|---|
+| unclustered | |
+
+### Patterns
+2–4 lines: what dropped most areas in this scope (for example "every shape needs an accredited professional to sign off", or "users reachable only through procurement"), and what would make the next run in this scope better.
