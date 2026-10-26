@@ -18,7 +18,7 @@
 | `harness` | `pi` | `pi`, `omp` or `fake`; one file per harness in `scripts/adapters/` |
 | `provider` | `deepseek` | As the harness names it |
 | `model` | `deepseek-flash` | DeepSeek V4.1 Flash in pi 1.4.0 and omp 18.12.6. Model IDs change between harness releases: `doctor` checks the ID against the harness's own model list |
-| `server` | `as1.manee-goby.ts.net` | Any host with passwordless ssh and Docker |
+| `server` | `as1.manee-goby.ts.net` | Any host with passwordless ssh and Docker, or `local` when Claude Code runs on the Docker host itself (no ssh; see `server-setup.md`) |
 | `project` | Repo folder name | Names the bare repo and package cache on the server |
 | `image` | `subagent-base:v1` | Built by `delegate.sh image build`; see Project images |
 | `setup` | none | Run once per task in the fresh clone, network on, no API key, e.g. `pnpm install --frozen-lockfile` |

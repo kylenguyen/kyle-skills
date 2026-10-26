@@ -33,7 +33,7 @@ Overrides: use `--harness omp` for cross-file renames and refactors in large typ
 
 ## The wrapper: `scripts/delegate.sh`
 
-Call it by absolute path (`<this skill's directory>/scripts/delegate.sh`; below, just `delegate.sh`) from inside the project repo, in any worktree. It keeps local results in `<repo>/.subagent-runs/` (added to `.git/info/exclude` automatically) and talks to the server over ssh. The server side is described in `references/server-setup.md`; configuration and overrides in `references/config.md`.
+Call it by absolute path (`<this skill's directory>/scripts/delegate.sh`; below, just `delegate.sh`) from inside the project repo, in any worktree. It keeps local results in `<repo>/.subagent-runs/` (added to `.git/info/exclude` automatically) and talks to the server over ssh, or runs directly on it when `server` is `local` (Claude Code running on the Docker host). The server side is described in `references/server-setup.md`; configuration and overrides in `references/config.md`.
 
 | Command | Use |
 |---|---|
@@ -193,7 +193,7 @@ For a single change with no plan:
 ## Secrets and data handling
 
 - Briefs never contain secrets, credentials, production config, customer data or internal hostnames. The container gets only a fresh clone, never local `.env` files.
-- The API key lives on the server in `~/subagent/secrets.env` (mode 600) and is passed only to the agent phase. Never ask the user to paste a key, never print one, and never put one in a config file; config names the env var only.
+- The API key lives on the server in `~/subagent/secrets.env` (mode 600) and is passed only to the agent phase. Never ask the user to paste a key, never print one, and never put one in a config file; config names the env var only. When `server` is `local` the file is on your own machine: never read, cat, grep or copy it, because the wrapper is the only thing that should touch it.
 - The sub-agent has network access in v1, so treat anything in the repo as visible to the model provider. Don't delegate tasks in repos that hold secrets in tracked files.
 
 ## What this skill can and cannot conclude

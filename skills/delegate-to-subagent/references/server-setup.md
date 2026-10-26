@@ -60,6 +60,19 @@ Container hardening on every phase: runs as the server user's uid (non-root), `-
 
 Network: in v1 the agent can reach any host. That is acceptable because the API key is the only secret inside the container, but it means repo contents can reach the model provider and anything the agent fetches. v3 adds an allowlist proxy (`egress_hosts`).
 
+## Running Claude Code on the server
+
+Claude Code can run on the Docker host itself instead of a laptop. Set `server: local` and `delegate.sh` runs the server commands directly and pushes to the bare repo by path, so no ssh is needed. Everything else, including the layout above, is unchanged.
+
+1. Do the steps above (Docker group, `secrets.env`, image) on the server.
+2. Install the skill there: clone this repo and symlink `skills/delegate-to-subagent/` into `~/.claude/skills/`.
+3. Add `server: local` to `~/.claude/subagent.yaml` on the server, then run `delegate.sh doctor` from a project repo there.
+
+Two things change when Claude runs as the same user as the wrapper:
+
+- `~/subagent/secrets.env` is readable by Claude. The rule against reading or printing it still applies. As a guardrail (not a real boundary), add a deny rule for it to the Claude Code settings on the server, for example `"permissions": { "deny": ["Read(~/subagent/secrets.env)"] }`.
+- Docker access is close to root on that host, and Claude has it too. Only use local mode on a host dedicated to this work.
+
 ## Housekeeping
 
 Run folders stay on the server for debugging. Clear old ones occasionally:

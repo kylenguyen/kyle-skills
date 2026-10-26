@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # delegate.sh: run sub-agent tasks in throwaway containers on a remote Docker host.
-# Runs on the user's machine from inside the project's git repo (any worktree).
+# Runs on the user's machine from inside the project's git repo (any worktree), or on the Docker
+# host itself with server "local".
 # Written for bash 3.2 (the macOS default): no associative arrays, mapfile or ${x,,}.
 set -euo pipefail
 
@@ -31,7 +32,7 @@ run options:
   --no-wait          Launch and return; use status/fetch later
   --force            Rerun an id whose results already exist locally
 
-Overrides (any command): --harness H --provider P --model M --server S --image I
+Overrides (any command): --harness H --provider P --model M --server S|local --image I
   --timeout-min N --max-turns N --set key=value (flag layer) --plan key=value (plan layer)
 EOF
 }
@@ -136,8 +137,14 @@ key_var() { # env var holding the API key for the resolved provider ("" for none
 
 # ---- ssh helpers ----------------------------------------------------------------------------
 SSH_OPTS="-o BatchMode=yes -o ConnectTimeout=10 -o ServerAliveInterval=15 -o ServerAliveCountMax=4"
-rsh() { ssh $SSH_OPTS "$(cfg server)" "$@"; }
-bare_url() { printf 'ssh://%s/~/subagent/repos/%s.git' "$(cfg server)" "$(cfg project)"; }
+# server "local" means this machine is the Docker host (Claude Code running on the server itself):
+# the same command strings run under bash instead of ssh, and git uses the bare repo's path.
+is_local() { [ "$(cfg server)" = local ]; }
+rsh() { if is_local; then bash -c "$*"; else ssh $SSH_OPTS "$(cfg server)" "$@"; fi; }
+bare_url() {
+  if is_local; then printf '%s/subagent/repos/%s.git' "$HOME" "$(cfg project)"
+  else printf 'ssh://%s/~/subagent/repos/%s.git' "$(cfg server)" "$(cfg project)"; fi
+}
 export GIT_SSH_COMMAND="ssh $SSH_OPTS"
 
 # macOS bsdtar adds xattr headers that GNU tar on the server warns about.
@@ -255,8 +262,13 @@ cmd_doctor() {
   echo "local"
   command -v jq >/dev/null && ok "jq" || bad "jq not found locally (brew install jq)"
   [ -z "$(git status --porcelain)" ] && ok "working tree clean" || warn "working tree has uncommitted changes"
-  echo "server $(cfg server)"
-  sync_server 2>/dev/null || { bad "ssh to $(cfg server) failed"; echo "$fails check(s) failed"; return 1; }
+  if is_local; then
+    echo "server local (this machine)"
+    sync_server 2>/dev/null || { bad "setting up ~/subagent failed"; echo "$fails check(s) failed"; return 1; }
+  else
+    echo "server $(cfg server)"
+    sync_server 2>/dev/null || { bad "ssh to $(cfg server) failed"; echo "$fails check(s) failed"; return 1; }
+  fi
   tmp=$(mktemp)
   doctor_script "$(cfg harness)" "$(key_var)" "$(cfg image)" "$(cfg model)" "$(cfg provider)" > "$tmp"
   if ! out=$(rsh "bash -s" < "$tmp" 2>&1); then
@@ -314,7 +326,8 @@ launch() { # launch <id> <mode> <base-sha> <start-sha> <merge-sha>
   [ -n "$merge" ] && refs="$refs $merge:refs/heads/merge/$id"
   # shellcheck disable=SC2086
   git push -q -f "$(bare_url)" $refs
-  rsh "cd ~/subagent && nohup bash bin/remote-run.sh '$id' > runs/'$id'/remote.out 2>&1 < /dev/null &"
+  # setsid detaches the job from the caller's process group, which a local caller may kill on exit.
+  rsh "cd ~/subagent && setsid nohup bash bin/remote-run.sh '$id' > runs/'$id'/remote.out 2>&1 < /dev/null &"
   if [ "$mode" = task ]; then
     echo "launched $id ($(cfg harness) $(cfg provider)/$(cfg model)) on $(cfg server)"
   else

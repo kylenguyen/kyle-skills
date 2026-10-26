@@ -15,7 +15,7 @@ A collection of [Agent Skills](https://docs.claude.com/en/docs/claude-code/skill
 
 - [Claude Code](https://docs.claude.com/en/docs/claude-code) installed and signed in.
 - Web search available in your Claude Code session. `ai-opportunity-scout` depends on current facts; without search the run is marked degraded, time-sensitive claims are tagged as unverified and their scores are capped.
-- For `delegate-to-subagent`: a Linux host with Docker, git and jq that you can reach by passwordless ssh, an API key for the sub-agent's model provider stored on that host, and `jq` locally. One-time setup is in [server-setup.md](skills/delegate-to-subagent/references/server-setup.md).
+- For `delegate-to-subagent`: a Linux host with Docker, git and jq that you can reach by passwordless ssh, an API key for the sub-agent's model provider stored on that host, and `jq` locally. Claude Code can also run on that host itself (`server: local`, no ssh). One-time setup is in [server-setup.md](skills/delegate-to-subagent/references/server-setup.md).
 
 ### 1. Clone the repo
 
