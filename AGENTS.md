@@ -75,4 +75,4 @@ These skills are used inside FairPrice Group and drive sub-agents that search th
 
 - Short, lowercase, imperative subject lines, for example `add AI opportunity scout skill` or `tighten gate 2 knockout rules`.
 - One skill per commit where practical.
-- Do not commit run outputs (`opportunity-scout-runs/`, `.subagent-runs/`) or other generated artefacts.
+- Do not commit run outputs (`opportunity-scout-runs/`, `.subagent-runs/`, `.tighten-docs/`) or other generated artefacts.

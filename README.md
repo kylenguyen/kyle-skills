@@ -8,6 +8,7 @@ A collection of [Agent Skills](https://docs.claude.com/en/docs/claude-code/skill
 |---|---|
 | [delegate-to-subagent](skills/delegate-to-subagent/SKILL.md) | Plans a feature as small self-contained tasks, then has a cheaper model (pi or omp running DeepSeek by default) implement them in throwaway Docker containers on a remote server, while Claude writes the briefs, reviews and merges. The wrapper runs the verify commands and guard checks on the diff itself, so review trusts measured results rather than the sub-agent's report. Modes: plan, execute a plan (one commit per task on a feature branch, conflicts resolved, end-to-end check), or delegate a single task. Never merges to `main`. |
 | [ai-opportunity-scout](skills/ai-opportunity-scout/SKILL.md) | Finds the best AI product area for a fast, low-maintenance, patient builder to focus on next, and designs cheap prototype probes to test it. Generates seed ideas, clusters them into areas wide enough to pivot within, and scores them the way early-stage investors such as Y Combinator screen startups, adapted to the builder's edges. Recommends a primary area, an opening round of parallel probes with a focus rule, signal thresholds and a pivot map. Orchestrates roughly 21–34 sub-agents depending on depth. |
+| [tighten-docs](skills/tighten-docs/SKILL.md) | Simplifies the wording of docs and instructions in a repo or directory (READMEs, AGENTS.md, SKILL.md and prompts, templates, code comments). Cuts filler, repetition and historical trails, then checks that no command, path, number, placeholder or trigger phrase was lost and has a reviewer sub-agent confirm agent instructions still behave the same. Edits in place, never commits. |
 
 ## Installation
 
@@ -86,6 +87,14 @@ Execute docs/csv-export-plan.md
 ```
 
 Or hand over one change: `Delegate adding pagination tests for src/api/orders to a sub-agent.` Claude runs a preflight check (`delegate.sh doctor`) first. Execute mode works in a separate worktree on `feature/<feature>`, keeps its state in `.subagent-runs/` so an interrupted run can resume, stops to ask when spend reaches the run cap (USD 5 by default), and ends with a report of each task's status, fix-up rounds and cost.
+
+For `tighten-docs`, name the scope or run it from the directory you want tightened:
+
+```
+Tighten the wording in @skills/dr-report/ and remove history that isn't needed to run it.
+```
+
+It shows the files in scope and waits for confirmation, edits them in place, and writes a report to `.tighten-docs/<date>-<scope>/report.md` listing every removed instruction for you to check. Review with `git diff`. Ask for "report only" to get proposed versions without touching the files.
 
 ## Data handling
 
