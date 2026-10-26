@@ -4,7 +4,7 @@ Guidance for AI coding agents (Claude Code, Codex, Cursor and similar) working i
 
 ## What this repo is
 
-A collection of Agent Skills for Claude Code. There is no application code, build step or test suite. Every file is Markdown or JSON that an LLM reads at runtime, so the prose is the product: wording changes behaviour.
+A collection of Agent Skills for Claude Code. There is no build step or test suite. Most files are Markdown or JSON that an LLM reads at runtime, so the prose is the product: wording changes behaviour. A skill may also ship shell scripts in `scripts/` that it runs as tools.
 
 ## Layout
 
@@ -14,6 +14,7 @@ skills/<skill-name>/
   prompts/        # sub-agent prompt templates (orchestrating skills only)
   references/     # material the skill reads on demand: rubrics, schemas, policies
   templates/      # output templates the skill fills in
+  scripts/        # executables the skill runs (shell scripts, Dockerfiles, adapters)
 ```
 
 Users install a skill by symlinking or copying `skills/<skill-name>/` into `~/.claude/skills/` or a project's `.claude/skills/` (see README.md). A skill folder must therefore be self-contained: never reference files outside its own directory.
@@ -33,6 +34,11 @@ Users install a skill by symlinking or copying `skills/<skill-name>/` into `~/.c
 - Use `{UPPER_SNAKE}` placeholders. The shared ones are `{SKILL_DIR}` (absolute path to the skill), `{RUN_DIR}` and `{TODAY}`; add stage-specific ones (`{AREA_ID}`, `{LENS}`, `{N}`) as needed. When you add a placeholder, update the instructions in SKILL.md that fill it.
 - Each prompt lists the files to read first, the exact output path, and what to return to the orchestrator (a short summary, not the full output).
 - Reference shared policies by path (for example `{SKILL_DIR}/references/freshness.md`) rather than copying them into each prompt.
+
+### Scripts (`scripts/`)
+
+- Scripts that run on the user's machine must work in bash 3.2 (the macOS default): no associative arrays, `mapfile` or `${x,,}`.
+- Test scripts against a toy repo before committing; there is no test suite to catch regressions. `delegate-to-subagent` has a `fake` adapter for this.
 
 ### Cross-file consistency
 
@@ -69,4 +75,4 @@ These skills are used inside FairPrice Group and drive sub-agents that search th
 
 - Short, lowercase, imperative subject lines, for example `add AI opportunity scout skill` or `tighten gate 2 knockout rules`.
 - One skill per commit where practical.
-- Do not commit run outputs (`opportunity-scout-runs/`) or other generated artefacts.
+- Do not commit run outputs (`opportunity-scout-runs/`, `.subagent-runs/`) or other generated artefacts.
