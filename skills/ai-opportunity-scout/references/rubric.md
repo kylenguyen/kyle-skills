@@ -1,14 +1,14 @@
 # Area scoring rubric
 
-This rubric scores opportunity areas, not single products. The question it answers is "is this the best place for this builder to focus next?", not "will this idea return a venture fund?". It borrows what early-stage investors select for (an acute problem, a reason it works now, an insight others lack, a team suited to it) and adapts it to a builder whose edge is speed, low operating load and patience. Areas too small for venture money are a feature here, because they draw less funded competition.
+This rubric scores opportunity areas, not single products. It asks "is this the best place for this builder to focus next?", not "will this idea return a venture fund?". It borrows what early-stage investors select for (an acute problem, a reason it works now, an insight others lack, a team suited to it), adapted to a builder whose edges are speed, low operating load and patience. Areas too small for venture money are a feature, because they draw less funded competition.
 
-Score each criterion from 1 to 5 using the scale points below. A 4 lies between the 3 and 5 descriptions, and a 2 lies between 1 and 3. Most areas should land at 2–3 on most criteria. If you are giving 4s and 5s across the board, you are probably scoring optimistically, so recheck the evidence.
+Score each criterion from 1 to 5 using the scale points below. A 4 lies between the 3 and 5 descriptions, and a 2 lies between 1 and 3. Most areas should land at 2–3 on most criteria. If you are giving 4s and 5s across the board, recheck the evidence: you are probably scoring optimistically.
 
 For every score, give the evidence that justifies it, tagged as described in `freshness.md`. Areas are compared on these scores, so an untagged claim can't be checked and shouldn't move a score.
 
 ## Builder profile
 
-The scale points assume the default builder profile in SKILL.md: prototypes in 1–2 weeks, at most 2 hours a week of operating load per live probe, self-serve channels, patient about returns. Read the profile in `scope.md`. If the user changed it, adjust the affected anchors (for example, a builder who accepts 10 hours a week of operating load can score #4 one point higher for a light service component) and say so in the justification.
+The scale points assume the default builder profile in SKILL.md: prototypes in 1–2 weeks, at most 2 hours a week of operating load per live probe, self-serve channels, patient about returns. Read the actual profile in `scope.md`. If the user changed it, adjust the affected anchors (for example, a builder who accepts 10 hours a week of operating load can score #4 one point higher for a light service component) and say so in the justification.
 
 ## Evidence caps
 
@@ -70,10 +70,10 @@ If the first probe fails, how many other product shapes are left in the area, an
 ### 6. Room for a small builder
 Competition proves the problem is real. What matters is whether a focused builder can serve some users better. A related feature shipped by an incumbent doesn't kill an area; it kills the probes that compete with it head-on. Three things do kill it: the core job already solved free by tools the segment uses, a tarpit, or a crowd of funded teams going after exactly the same users and shapes.
 - **1:** Default tools the segment already uses (its main platforms, general AI assistants, free model-provider features) solve the core job well now. Or the area is a tarpit: it looks obvious, many have tried, and the structural barrier that stopped them still holds.
-- **3:** Incumbents, providers or funded startups cover parts of the job. The segment or job is niche, cross-platform, regional or fast-moving enough that a focused product can serve some users better. Cite your search, including recent funding rounds.
-- **5:** Incumbents and funded teams are structurally unlikely to serve it: too small for venture money, spread across several platforms, regional, or against their business model. Nothing ships today. Previous attempts stalled for reasons that no longer apply. Cite your search.
+- **3:** Incumbents, providers or funded startups cover parts of the job. The segment or job is niche, cross-platform, regional or fast-moving enough that a focused product can serve some users better.
+- **5:** Incumbents and funded teams are structurally unlikely to serve it: too small for venture money, spread across several platforms, regional, or against their business model. Nothing ships today. Previous attempts stalled for reasons that no longer apply.
 
-This score must cite a fresh search of incumbent, provider and startup activity, and name any previous attempts found. A score above 2 that rests on memory alone breaks the evidence cap.
+This score must cite a fresh search of incumbent, provider and startup activity, including recent funding rounds, and name any previous attempts found. A score above 2 that rests on memory alone breaks the evidence cap.
 
 ### 7. Why now and trajectory
 What recently changed to open this area, and which direction is it moving? Ideas that were always possible and never worked are usually tarpits. A change that just happened also opens a window: the first product to fit a newly possible job can keep an unusually loyal first cohort, until the next model or an incumbent makes the job easy for everyone.
@@ -94,7 +94,7 @@ Insiders see real problems and reach users cheaply. Scored against the user back
 - **5:** The user has lived the job, belongs to the user community or already has an audience there, and holds an insight about it that outsiders lack.
 
 ### 10. Advantage fit
-Does this area reward what this builder does better than a funded team? Score how much each of the three edges in the builder profile pays off here. An area can be attractive in general but reward the wrong things, such as enterprise sales, a large support team or a single big launch.
+Does this area reward what this builder does better than a funded team? Score how much each of the three edges in the builder profile pays off here. An area can be attractive in general yet reward the wrong things, such as enterprise sales, a large support team or a single big launch.
 - **Speed:** the area moves fast (frequent model or platform changes, short windows), so shipping several probes in the time a funded team ships one is a real advantage.
 - **Low operating load:** products here can be left running unattended, so the builder can keep many small probes alive at once, each holding its audience or rankings.
 - **Patience:** the payoff compounds slowly (search traffic, community trust, accumulated data or content), which deters competitors who need fast returns.

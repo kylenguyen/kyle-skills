@@ -3,7 +3,7 @@
 Date: {TODAY} · Search status: ok | partial | unavailable · Verdict: **explore | explore with concerns | knockout**
 
 ## 1. Area thesis
-Two or three sentences: the segment, the urgent sub-segment the first probe targets, the recurring job, the shift that makes AI useful for it now, and the insight. Then one paragraph: why this is a good place for this builder to start, and the single biggest reason it might not be. End with an overall confidence (L/M/H) and why.
+Two or three sentences: the segment, the urgent sub-segment the first probe targets, the recurring job, the shift that makes AI useful for it now, and the insight. Then one paragraph: why this is a good place for this builder to start, and the biggest reason it might not be. End with an overall confidence (L/M/H) and why.
 
 | Dimension | Specialist score (1–5) | One-line rationale |
 |---|---|---|

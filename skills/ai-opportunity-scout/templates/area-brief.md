@@ -10,11 +10,11 @@
 
 **Who and where:** who the users are, the sub-segment that wants this most urgently, how often the job recurs for them, and the surfaces where they can be reached, with rough reach.
 
-**What's inside:** 4–6 product shapes the area holds (seeds and adjacent shapes). This is the pivot room.
+**What's inside:** 4–6 product shapes the area holds (seeds and adjacent shapes): the pivot room.
 
 **Why a small builder has room:** what incumbents, providers and funded startups cover today, the part they leave open, and who tried this before and why they stalled.
 
-**Operating load:** what a live product here needs from you each week, and what could make that grow.
+**Operating load:** what a live product here needs from the builder each week, and what could make that grow.
 
 | Criterion | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
 |---|---|---|---|---|---|---|---|---|---|---|

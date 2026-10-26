@@ -5,11 +5,11 @@ description: Find the best AI product area for a fast, low-maintenance, patient 
 
 # AI Opportunity Scout
 
-Find a good place to start building, not a finished business plan. Desk research can't tell which product will work; it can tell which areas are worth exploring and which first experiments give honest signal fastest.
+Find a good place to start building, not a finished business plan: which areas are worth exploring, and which first experiments give honest signal fastest.
 
-The unit of output is an **opportunity area**: a user segment, a recurring job they struggle with, and a recent shift that makes AI useful for it. A good area is wide enough to hold several product shapes, so a failed first prototype leads to a pivot inside the area rather than a fresh start. Inside each area, the skill designs **probes**: small prototypes or tests, each buildable in days and cheap to leave running, each with a pre-agreed threshold that decides whether to double down, iterate or move on.
+The unit of output is an **opportunity area**: a user segment, a recurring job they struggle with, and a recent shift that makes AI useful for it. A good area is wide enough to hold several product shapes, so a failed first prototype leads to a pivot inside the area rather than a fresh start. Inside each area, the skill designs **probes**: small prototypes or tests, each buildable in days, cheap to leave running, and with a pre-agreed threshold that decides whether to double down, iterate or move on.
 
-Areas are scored the way an early-stage investor reads an application, adapted to this builder (`references/rubric.md`). Because this builder can test cheaply where an investor must pick by conviction, the run ends with an opening round of parallel probes and a rule for letting their results choose the focus area.
+Areas are scored the way an early-stage investor reads an application, adapted to this builder (`references/rubric.md`). Because this builder can test cheaply where an investor must pick by conviction, the run ends with an opening round of parallel probes and a focus rule that lets their results choose the focus area.
 
 ## Builder profile
 
@@ -26,11 +26,14 @@ The rubric and probe design assume the builder below. Show these defaults in the
 
 ## Freshness
 
-AI capability, model pricing, competitors and marketplace rules change month to month, so your training data is out of date for all of them. Read `references/freshness.md` before starting: it defines which facts must come from a current search, how to tag evidence, and what to do when search is unavailable.
+AI capability, model pricing, competitors and marketplace rules change month to month, so your training data is out of date for all of them. Read `references/freshness.md` before starting: it sets which facts must come from a current search, how to tag evidence, and what to do when search is unavailable.
 
 ## Inputs
 
-Collect these from the user's prompt. Ask one short question only if both the domain and the target users are missing, or if the user background is missing (ask once). Default everything else and show the defaults in the scope confirmation.
+Collect these from the user's prompt, default the rest, and show the defaults in the scope confirmation. Ask one short question, once, only if:
+
+- the user background is missing. Ask even when the scope looks complete: the background changes the result more than any other input, because ideas from the builder's own work outperform brainstormed ones.
+- both the domain and the target users are missing. If the user gives a rich background instead, the background can be the scope.
 
 | Input | Default |
 |---|---|
@@ -42,8 +45,6 @@ Collect these from the user's prompt. Ask one short question only if both the do
 | Exclusions (sectors, ideas already tried) | None |
 | Depth | `standard` |
 | AI smoke test during probe design | Off (opt-in) |
-
-Ask for the background even if the scope looks complete: it changes the result more than any other input, because ideas from the builder's own work outperform brainstormed ones. If the user gives no domain or target users but does give a rich background, the background can be the scope.
 
 ### Depth settings
 
@@ -57,7 +58,7 @@ Tell the user the approximate sub-agent count in the scope confirmation, because
 
 ## Run folder
 
-Create `./opportunity-scout-runs/<YYYY-MM-DD>-<scope-slug>/` in the current working directory. Every stage writes its output there, so a run can resume from any stage. Keep `run-log.md` updated with the stage, timestamp, sub-agent count and whether web search was available.
+Create `./opportunity-scout-runs/<YYYY-MM-DD>-<scope-slug>/` in the current working directory. Every stage writes its output there, so a run can resume from any stage. Keep `run-log.md` in it updated with the stage, timestamp, sub-agent count and whether web search was available.
 
 ### Resuming
 
@@ -65,7 +66,7 @@ Before launching any sub-agent, check whether its output file already exists and
 
 ## How to spawn sub-agents
 
-Each stage has a prompt file in `prompts/`. Read it, fill in the `{placeholders}`, and pass the result to the Agent tool. Always fill `{SKILL_DIR}` (the absolute path of this skill directory), `{RUN_DIR}` and `{TODAY}`. The stage-specific ones are:
+Each sub-agent stage has a prompt file in `prompts/`. Read it, fill in the `{placeholders}`, and pass the result to the Agent tool. Always fill `{SKILL_DIR}` (the absolute path of this skill directory), `{RUN_DIR}` and `{TODAY}`. The stage-specific ones are:
 
 | Placeholder | Used in | Value |
 |---|---|---|
@@ -96,14 +97,14 @@ Writes `landscape.md`: a dated, sourced snapshot of current AI capability and pr
 
 ### Stage 2: Seeds (6 parallel sub-agents, `prompts/generator.md`)
 
-Run one sub-agent per lens in `references/lenses.md`, writing to `seeds/lens-<name>.json`. Each lens produces one seventh of the depth's seed count and the founder lens two sevenths.
+Run one sub-agent per lens in `references/lenses.md`, writing to `seeds/lens-<name>.json`. Set `{N}` as in the placeholder table.
 
 ### Stage 3: Cluster into areas (main agent)
 
-Group the seeds into opportunity areas using the area schema in `references/idea-schema.md`, and write `areas.json`. This step decides what the rest of the run evaluates, so take care with it:
+Group the seeds into opportunity areas using the area schema in `references/idea-schema.md`, and write `areas.json`. This step decides what the rest of the run evaluates:
 
 1. Define each area by segment, job and shift, not by a product. "IRAS R&D claim evidence pack from Git and Jira" is a seed. Its area is wider: "turning engineering activity into the reports non-engineers need" holds R&D claims, capitalisation schedules, client status reports and release notes for customers.
-2. Test the width. You should be able to name the user, the recurring job, and at least three product shapes that serve that user's job. If you can't name three shapes, the area is too narrow. If the users or the job differ across the shapes, the area is too wide ("AI for SMEs"), so split it.
+2. Test the width: name the user, the recurring job and at least three product shapes that serve that job. If you can't name three shapes, the area is too narrow. If the users or the job differ across the shapes, the area is too wide ("AI for SMEs"), so split it.
 3. Prefer areas with seeds from two or more lenses. Independent lenses landing on the same job is evidence the job is real. An area with only one or two seeds may stay if you can name adjacent shapes; mark it `thin`.
 4. Add `adjacent_shapes`: product shapes that fit the area but that no generator proposed. Probe design draws on these.
 5. Fill a rough first draft of `insight`, `urgent_subsegment`, `proxies` and `prior_attempts` from the seeds and `landscape.md`; the analyst checks them. When two candidate groupings are equally good, prefer the one that keeps a founder-lens seed in the area, because that is where the builder's insight is.
@@ -154,7 +155,7 @@ When the user comes back with probe results for a run, don't rerun the funnel:
 
 1. Read the run's `report.md` and the area's `probes/<area-id>/playbook.md`.
 2. Append the results to `probe-log.md` in the run folder: the probe, dates, the numbers observed, and what users said.
-3. Apply the playbook's thresholds as written and say plainly which outcome was reached (double down, iterate or move on), even if it's disappointing; they were set in advance so a hopeful reading can't override them. Break the numbers down by segment and channel, and call out any segment that repeats far more than the rest (`references/probe-design.md` section 3).
+3. Apply the playbook's thresholds as written and say plainly which outcome was reached (double down, iterate or move on), even if it's disappointing. They were set in advance so a hopeful reading can't override them. Break the numbers down by segment and channel, and call out any segment that repeats far more than the rest (`references/probe-design.md` section 3).
 4. If these are opening-round results, apply the focus rule from `final.json` and name the focus area. Recommend switching off the other opening probes unless one costs nothing to leave live and is still collecting an asset.
 5. Use the pivot map to propose the next probe. If the result matches no row, design one new probe using `references/probe-design.md`.
 6. If more than 4 weeks have passed since the run, run a quick fresh search for competitor and incumbent launches in the area before recommending a move.

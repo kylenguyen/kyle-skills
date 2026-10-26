@@ -2,7 +2,7 @@
 
 A probe is a small, time-boxed experiment that puts something real in front of an area's users and measures what they do. Each probe answers one question in the area's learning agenda, and its result decides the next move.
 
-Search for every time-sensitive point (marketplace rules and review times, platform terms, model prices, conversion benchmarks); `freshness.md` section 2 lists them. Tag evidence as `[F]`, `[I]`, `[A]` or `[M]`.
+Search for every time-sensitive point (marketplace rules and review times, platform terms, model prices, conversion benchmarks) listed in `freshness.md` section 2. Tag evidence as `[F]`, `[I]`, `[A]` or `[M]`.
 
 ## 1. What every probe states
 
@@ -21,7 +21,7 @@ Search for every time-sensitive point (marketplace rules and review times, platf
 
 ## 2. Probe types
 
-Cheapest first. Use the cheapest type that can answer the question.
+Listed cheapest first. Use the cheapest type that can answer the question.
 
 | Type | Build | Operating load | Signal it can give | Best when |
 |---|---|---|---|---|
@@ -46,14 +46,14 @@ Strongest first. A continue decision (double down or iterate) must rest on a sig
 5. Sign-up or waitlist.
 6. Views, clicks, likes or stars.
 
-Two ways AI probes mislead, and how to read past them:
+Two ways AI probes mislead:
 
 - AI tourists. New AI tools attract people who try anything once and leave. Measure repeat use from week 2 onwards among users who activated, and ignore the launch-week spike when setting thresholds.
 - Averages hide the well. Break every metric down by segment and channel. One segment that repeats far more than the rest is the most valuable thing a probe can find: it says who wants this right now, and the next probe should narrow to them. A flat, uniformly weak curve across every segment is a move-on signal, not an iterate.
 
 ## 4. Thresholds
 
-Set every threshold before the probe launches. Once you have seen the numbers, it is too easy to find reasons why a weak result is encouraging.
+Set every threshold before the probe launches, because once you have seen the numbers it is too easy to read a weak result as encouraging.
 
 - Give three outcomes: double down (move to the next probe in the sequence, or invest more in this one), iterate (change one thing and rerun once), and move on (follow the pivot map).
 - Anchor thresholds on searched benchmarks where they exist, such as typical landing-page conversion for the channel, or extension or plugin retention. Tag them `[F]`. Where no benchmark exists, set a modest threshold, tag it `[A]` and say so.
@@ -78,8 +78,8 @@ Check every probe against these rules. A probe that breaks one must say so and g
 - The first probe should ship within 7 days of starting and need no prior probe.
 - Aim the first probe at the area's `urgent_subsegment`, not the whole segment. A narrow group that urgently wants the job gives clearer signal than a broad group that mildly wants it.
 - Order the probes so that the riskiest assumption is tested first in the cheapest way, usually problem resonance, then demand for a promise, then use, then payment.
-- Each probe should reuse something from the one before: audience, code, data or wording. This is what keeps pivots inside an area cheap.
-- At most 3 probes live at once, per the builder profile.
+- Each probe should reuse something from the one before (audience, code, data or wording), because that keeps pivots inside an area cheap.
+- Keep no more probes live at once than the builder profile's parallel-probe limit (default 3).
 - The pivot map lists the likely signals and the move each triggers. Draw the moves from the area's seeds and `adjacent_shapes`: for example, "users love the output but won't connect their accounts → switch from integration to upload-based tool", or "the developer segment activates, the finance segment doesn't → retarget the next probe at developers".
 - Each probe should leave an asset behind even if it fails: an audience list, search rankings, a labelled dataset, an eval set or reusable code. Name it in "Teaches even if it fails".
 - Exit criteria: say when to leave the area entirely, for example "three probes in a row land on move on" or "no channel reaches 100 target users in 4 weeks".
@@ -115,7 +115,7 @@ Both specialists' files have these parts:
 
 ## 8. The opening round
 
-The run lets the market choose between finalists. The judge picks one opening probe per finalist area (at most the builder's parallel-probe limit) and runs them side by side over the same time box. Opening probes should be the cheapest type that can reach at least the activation rung, so they can be compared like for like.
+The opening round lets the market choose between finalists. The judge picks one opening probe per finalist area (at most the builder's parallel-probe limit), all running side by side over the same time box. Opening probes should be the cheapest type that can reach at least the activation rung, so they can be compared like for like.
 
 The focus rule, written before launch:
 1. Focus on the area whose opening probe reached double down. If more than one did, pick the one whose best signal sits higher on the ladder, then the one with a standout segment, then the higher #9 founder fit.

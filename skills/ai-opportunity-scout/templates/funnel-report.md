@@ -25,4 +25,4 @@ Run: {DATE} · Scope: {SCOPE} · Depth: {DEPTH} · Search status: {SEARCH_STATUS
 | unclustered | |
 
 ### Patterns
-2–4 lines: what dropped most areas in this scope (for example "every shape needs an accredited professional to sign off", or "users reachable only through procurement"), and what would make the next run in this scope better.
+2–4 lines: what dropped most areas in this scope (for example "every shape needs an accredited professional to sign off", or "users reachable only through procurement"), and what would improve the next run in this scope.

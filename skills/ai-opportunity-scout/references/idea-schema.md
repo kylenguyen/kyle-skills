@@ -33,7 +33,7 @@ Rules:
 - ID prefixes by lens: `wf-`, `cap-`, `gap-`, `fdr-`, `prv-`, `srf-`, followed by a two-digit number.
 - `prototype_shape` uses the probe types in `probe-design.md` section 2.
 - `evidence` needs at least one entry tagged `F` that shows the job or pain is real. A seed with no sourced anchor is usually a hunch.
-- Keep each field short. The schema is for clustering and comparing, not pitching.
+- Keep each field short: the schema is for clustering and comparing, not pitching.
 
 ## Area
 
@@ -63,4 +63,4 @@ Rules:
 - Area IDs are `area-` followed by a two-digit number.
 - `thin` is true when the area has fewer than 3 seeds.
 - `insight`, `proxies` and `prior_attempts` may be rough at Stage 3; the analyst fills the gaps. An empty `insight` is allowed, but say so, because an area with no insight is usually a crowded one.
-- Seeds that fit no area are listed in `areas.json` under a final object `{"id": "unclustered", "seeds": [...]}`.
+- List seeds that fit no area in `areas.json` under a final object `{"id": "unclustered", "seeds": [...]}`.
