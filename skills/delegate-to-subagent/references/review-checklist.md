@@ -39,7 +39,7 @@ Also check that the plan's expected results hold: if the plan expects a new test
 | `skipped_test` | Added `.skip`, `.only`, `xit`, `@pytest.mark.skip` and similar | Defect |
 | `todo_or_stub` | Added TODO, FIXME, `not implemented` and similar | Defect, unless the TODO is required by the plan |
 | `conflict_marker` | Conflict markers left in the diff | Defect |
-| `diff_size` | Over about 300 changed lines | Check for unrelated churn; if the work genuinely needed it, the task was too big |
+| `diff_size` | Over about 300 changed lines | Check for unrelated churn; if the work needed it, the task was too big |
 | `empty_diff` | No changes | Read the report and the last 50 transcript lines |
 
 ## Diff checklist
@@ -55,17 +55,11 @@ Also check that the plan's expected results hold: if the plan expects a new test
 
 ## Decision
 
-| Finding | Action |
-|---|---|
-| Everything passes | Merge |
-| Specific defects | Fix-up brief (`prompts/fixup-brief.md`) listing each defect with path:line, same branch, round +1 |
-| Rounds used up, or the fix is trivial | Fix it yourself during the squash merge |
-| Wrong approach, or the brief was the problem | Discard, fix the plan section, rerun with a new id |
-| The model keeps failing at this kind of task | Override to a stronger model, or set `executor: opus` |
+Act on the review with the Finding and Action table under Review in SKILL.md.
 
 ## Writing a fix-up
 
 - One line per defect: `src/sim/client.ts:57: retries on every error; should rethrow anything that is not TransientError`. Say what correct looks like, not only what is wrong.
 - Paste the failing `tail` from `result.json` under Failing output. Don't paste the whole log.
 - Don't restate what is already right. Don't add new requirements; if the plan was wrong, discard and fix the plan instead.
-- If the same defect survives a fix-up round, the brief is probably ambiguous: rewrite that part rather than repeating it louder.
+- If the same defect survives a fix-up round, the brief is probably ambiguous: rewrite that part instead of repeating it louder.

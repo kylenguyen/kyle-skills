@@ -5,7 +5,7 @@ description: Plan a feature as small self-contained tasks, then have a cheaper m
 
 # Delegate to sub-agent
 
-Opus plans, writes the task briefs and reviews. A cheaper model running in a coding harness (pi by default) does the edits inside a throwaway container on a remote Docker host. You trust what the wrapper measured (`result.json`: exit codes of the verify commands it ran, guard flags on the diff), never what the sub-agent says about its own work. Cost stays low because you never read transcripts and read diffs only when the automated checks pass.
+Opus plans, writes the task briefs and reviews. A cheaper model in a coding harness (pi by default) makes the edits in a throwaway container on a remote Docker host. Trust what the wrapper measured (`result.json`: exit codes of the verify commands it ran, guard flags on the diff), never what the sub-agent says about its own work. Cost stays low because you never read transcripts and read diffs only when the automated checks pass.
 
 Out of scope: writing documentation, merging to `main` without the user, and any sub-agent access outside its own clone.
 
@@ -16,8 +16,6 @@ Out of scope: writing documentation, merging to `main` without the user, and any
 | plan | "plan this feature", "break this into tasks" | `docs/<feature>-plan.md`, committed after the user approves |
 | execute | "execute docs/x-plan.md" | One commit per task on `feature/<feature>`, plus an end-to-end (E2E) report |
 | task | "delegate this fix to a sub-agent" | One branch, `agent/<slug>` |
-
-The plan format and the executor depend on each other, which is why they live in one skill.
 
 ## When to delegate
 
@@ -33,7 +31,7 @@ Overrides: use `--harness omp` for cross-file renames and refactors in large typ
 
 ## The wrapper: `scripts/delegate.sh`
 
-Call it by absolute path (`<this skill's directory>/scripts/delegate.sh`; below, just `delegate.sh`) from inside the project repo, in any worktree. It keeps local results in `<repo>/.subagent-runs/` (added to `.git/info/exclude` automatically) and talks to the server over ssh, or runs directly on it when `server` is `local` (Claude Code running on the Docker host). The server side is described in `references/server-setup.md`; configuration and overrides in `references/config.md`.
+Call it by absolute path (`<this skill's directory>/scripts/delegate.sh`; below, `delegate.sh`) from inside the project repo, in any worktree. It keeps local results in `<repo>/.subagent-runs/` (added to `.git/info/exclude` automatically) and reaches the server over ssh, or runs directly when `server` is `local` (Claude Code running on the Docker host). Server setup is in `references/server-setup.md`; configuration and overrides are in `references/config.md`.
 
 | Command | Use |
 |---|---|
@@ -43,7 +41,7 @@ Call it by absolute path (`<this skill's directory>/scripts/delegate.sh`; below,
 | `delegate.sh status\|fetch\|cancel <id>` | Reconnect to a job after ssh drops, collect it, or kill it |
 | `delegate.sh verify <ref> --verify C...` | Run commands against any ref in a fresh container with the network off |
 
-`run` and `verify` take minutes. Start them with the Bash tool's `run_in_background`, and read their final output when notified; it ends with a digest such as:
+`run` and `verify` take minutes. Start them with the Bash tool's `run_in_background` and read the output when notified; it ends with a digest such as:
 
 ```
 status=ok verify=pass (2/2) guard=1 flags diff=+120/-8 in 4 files commit=2a97ffe281 cost=$0.012 turns=14
@@ -56,12 +54,12 @@ Pass plan task fields as `--plan key=value` (for example `--plan harness=omp`) a
 
 ## Stage 1: Plan
 
-Read `references/plan-format.md` before writing a plan; it defines each field and the rules below in detail.
+Read `references/plan-format.md` before writing a plan; it defines each field and gives the reasons for the rules below.
 
-1. Explore the code enough to give every task real file:line pointers and interfaces. Briefs with pointers stop the sub-agent burning tokens on exploration.
+1. Explore the code enough to give every task real file:line pointers and interfaces, so the sub-agent does not burn tokens exploring.
 2. Break the feature into tasks with clear outcomes. `depends_on` must form a graph with no cycles.
 3. Make each task stand alone. The sub-agent sees only the shared context and its own task section, never this conversation or the repo's AGENTS.md, so the section carries every interface, pointer and convention it needs.
-4. Keep each task to one concern, about 5 files or fewer and about 300 changed lines or fewer. Split anything bigger, because cheap models degrade quickly on large tasks.
+4. Keep each task to one concern, about 5 files or fewer and about 300 changed lines or fewer. Split anything bigger.
 5. Give every task exact verify commands with expected results, runnable offline once setup has run.
 6. Tasks may touch the same files and still run in parallel. List each task's `files` accurately: the executor uses them to predict overlap and order merges, and the guard flags edits outside them.
 7. Mark a task `executor: opus` when it needs design judgement, touches security-sensitive code, or is smaller than its own brief would be.
@@ -84,9 +82,9 @@ Read `references/review-checklist.md` before the first review.
 
 ### Schedule
 
-Go in dependency order. A task is ready when every `depends_on` task is merged. Launch ready tasks at the same time, up to `max_parallel` (default 2), each as a background `delegate.sh run`. A task starts from the feature branch tip at the moment it is launched (`--base feature/<feature>`). Run `executor: opus` tasks yourself in the feature worktree while sub-agent tasks run.
+Go in dependency order. A task is ready when every `depends_on` task is merged. Launch ready tasks together, up to `max_parallel` (default 2), each as a background `delegate.sh run`. A task starts from the feature branch tip at launch (`--base feature/<feature>`). Run `executor: opus` tasks yourself in the feature worktree while sub-agent tasks run.
 
-Before every launch, check the run's total spend in `state.json` against `max_run_spend_usd`. If it is reached, stop and ask the user before spending more. Stop and ask as well when a task hits its timeout or turn cap twice.
+Before every launch, check the run's total spend in `state.json` against `max_run_spend_usd`. If it is reached, stop and ask the user before spending more. Also stop and ask when a task hits its timeout or turn cap twice.
 
 ### Brief
 
@@ -115,7 +113,7 @@ delegate.sh run <feature>-t3 --brief .subagent-runs/<feature>/briefs/<feature>-t
 
 ### Review
 
-Read in this order and stop once the decision is clear: the digest (already in the run's output), then `REPORT.md`, then the diff (`git show agent/<id>`, file by file with `-- <path>` if it is large). If `result.json` and `REPORT.md` disagree, trust `result.json`. Never read the transcript, except the last 50 lines when a run returns `agent_error` with an empty diff.
+Read in this order and stop once the decision is clear: the digest (already in the run's output), then `REPORT.md`, then the diff (`git show agent/<id>`, file by file with `-- <path>` if it is large). If `result.json` and `REPORT.md` disagree, trust `result.json`. Never read the transcript, except the last 50 lines when a run returns `agent_error` with an empty diff. Status meanings, guard flags and the diff checklist are in `references/review-checklist.md`.
 
 | Finding | Action |
 |---|---|
@@ -135,7 +133,7 @@ delegate.sh run <feature>-t3-fix1 --brief <fixup brief> --title "T3: Add retry t
 
 ### Merge
 
-Work in the feature worktree. Merge accepted tasks in plan order among those that are ready; when several are ready, merge the smaller diff first, because the larger task's conflict resolution then has the most context.
+Work in the feature worktree. Merge accepted tasks in plan order among those that are ready. When several are ready, merge the smaller diff first, so the larger task's conflict resolution has the most context.
 
 1. `git merge --squash agent/<id>`. If it is clean, `git commit -m "<Tn>: <title>"`. Each accepted task lands as exactly one commit.
 2. On a textual conflict, count the conflicted hunks (`git diff --diff-filter=U`):
@@ -145,7 +143,7 @@ Work in the feature worktree. Merge accepted tasks in plan order among those tha
    | Up to about 3 hunks and the intent of both sides is obvious | Resolve it yourself, `git add`, commit |
    | Larger, or needs logic re-implemented | `git reset --hard HEAD` to drop the half-merge, then a conflict task |
 
-   A conflict task fills `prompts/conflict-brief.md` (both task sections, the conflicted files) and runs with `--base feature/<feature> --merge agent/<id> --branch agent/<id>-merge1`. The server merges with the conflict markers left in place and the sub-agent resolves them. Pass the union of both tasks' `files` and the verify commands of both tasks. Review it like any task, then squash-merge `agent/<id>-merge1` (it applies cleanly onto the tip) as `<Tn>: <title>`.
+   A conflict task fills `prompts/conflict-brief.md` (both task sections, the conflicted files) and runs with `--base feature/<feature> --merge agent/<id> --branch agent/<id>-merge1`. The server merges, leaving the conflict markers in place, and the sub-agent resolves them. Pass the union of both tasks' `files` and both tasks' verify commands. Review it like any task, then squash-merge `agent/<id>-merge1` (it applies cleanly onto the tip) as `<Tn>: <title>`.
 3. Verify after every merge, because text can merge cleanly while behaviour breaks: run `delegate.sh verify feature/<feature>` with the plan's typecheck and lint commands plus the verify commands of every task merged so far.
 4. If that fails, undo the merge with `git reset --hard HEAD~1`. The feature branch is local and unshared, and dropping the commit keeps one commit per task. Then send a fix-up with the failing output. It counts as a fix-up round.
 
@@ -179,7 +177,7 @@ Work in the feature worktree. Merge accepted tasks in plan order among those tha
 }
 ```
 
-Update it after every launch, review decision and merge. On resume, read it, then for each task marked `running` call `delegate.sh status <run-id>`: fetch it if it is done, wait for it if it is still running, rerun it if it is missing. Check `git log feature/<feature>` against tasks marked `merged` before continuing.
+Update it after every launch, review decision and merge. On resume, read it, then run `delegate.sh status <run-id>` for each task marked `running`: fetch it if done, wait if still running, rerun if missing. Check `git log feature/<feature>` against tasks marked `merged` before continuing.
 
 ## Task mode
 
@@ -198,4 +196,4 @@ For a single change with no plan:
 
 ## What this skill can and cannot conclude
 
-Verify and guard results show that the stated commands passed in a clean container and flag suspicious edits; they don't prove the change is correct beyond what the tests cover. Your diff review covers design, conventions and test quality. The E2E section shows the feature works as the plan defined it; anything the plan didn't specify is untested. Cost figures come from the harness's own usage reports and can be missing for some providers.
+Verify and guard results show that the stated commands passed in a clean container, and flag suspicious edits. They don't prove the change is correct beyond what the tests cover. Your diff review covers design, conventions and test quality. The E2E section shows the feature works as the plan defined it; anything the plan didn't specify is untested. Cost figures come from the harness's own usage reports and can be missing for some providers.

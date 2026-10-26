@@ -62,7 +62,7 @@ Network: in v1 the agent can reach any host. That is acceptable because the API 
 
 ## Running Claude Code on the server
 
-Claude Code can run on the Docker host itself instead of a laptop. Set `server: local` and `delegate.sh` runs the server commands directly and pushes to the bare repo by path, so no ssh is needed. Everything else, including the layout above, is unchanged.
+Claude Code can run on the Docker host itself instead of a laptop. With `server: local`, `delegate.sh` runs the server commands directly and pushes to the bare repo by path, with no ssh. Everything else, including the layout above, is the same.
 
 1. Do the steps above (Docker group, `secrets.env`, image) on the server.
 2. Install the skill there: clone this repo and symlink `skills/delegate-to-subagent/` into `~/.claude/skills/`.
@@ -75,7 +75,7 @@ Two things change when Claude runs as the same user as the wrapper:
 
 ## Housekeeping
 
-Run folders stay on the server for debugging. Clear old ones occasionally:
+Run folders stay on the server for debugging. To clear runs older than 14 days and the wrapper's leftover refs:
 
 ```bash
 ssh <server> 'find ~/subagent/runs -mindepth 1 -maxdepth 1 -mtime +14 -exec rm -rf {} +'

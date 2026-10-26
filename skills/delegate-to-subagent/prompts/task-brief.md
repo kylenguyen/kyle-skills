@@ -1,6 +1,6 @@
 # Task {TASK_ID}: {TITLE}
 
-You are implementing one task in a git repository. The repository is your current working directory. Work only from this brief: you have no other context, and nobody will answer questions while you work.
+You are implementing one task in the git repository in your current working directory. Work only from this brief: you have no other context, and nobody will answer questions while you work.
 
 ## How your work is checked
 

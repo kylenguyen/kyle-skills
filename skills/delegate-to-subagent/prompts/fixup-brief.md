@@ -1,6 +1,6 @@
 # Task {TASK_ID}: {TITLE} (fix-up round {ROUND})
 
-You are fixing specific defects in work that is already in this repository. The repository is your current working directory. An earlier attempt at the task below is already applied (staged as an uncommitted merge on top of the latest code), and a reviewer found the defects listed here. Work only from this brief: nobody will answer questions while you work.
+You are fixing specific defects in the git repository in your current working directory. An earlier attempt at the task below is already applied (staged as an uncommitted merge on top of the latest code), and a reviewer found the defects listed here. Work only from this brief: nobody will answer questions while you work.
 
 ## Defects to fix
 

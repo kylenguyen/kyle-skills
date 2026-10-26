@@ -1,6 +1,6 @@
 # Plan format
 
-A plan is read by two audiences. The executor (you, later, possibly after the conversation is gone) needs the dependency graph, file lists and verify commands. Each sub-agent sees only the Shared context and its own task section, pasted into a brief. Write every section for a capable engineer who has never seen this codebase or this conversation.
+A plan has two readers. The executor (you, later, possibly after the conversation is gone) needs the dependency graph, file lists and verify commands. Each sub-agent sees only the Shared context and its own task section, pasted into a brief. Write every section for a capable engineer who has never seen this codebase or this conversation.
 
 Use `templates/plan.md`. Save it as `docs/<feature>-plan.md`, where `<feature>` is a short kebab-case slug; it also names the branch `feature/<feature>` and the run ids `<feature>-t<n>`.
 
@@ -36,7 +36,7 @@ Leave out history, past decisions, alternatives considered and anything about th
 
 1. **Self-contained.** If a task depends on another task's output, write the interface it will see into `context` (for example the exact function signature T1 adds). The sub-agent can't read T1's section or ask.
 2. **Size.** One concern, about 5 files or fewer, about 300 changed lines or fewer. If a task needs more, split it: interface first, then implementation, then callers. Cheap models degrade quickly on large tasks, and the guard flags diffs over 300 lines.
-3. **Testable alone.** Verify commands run in a clean container with the network off after the project's `setup` command, so they must not need running services, secrets or internet. Scope them to the task (`vitest run src/sim`, not the whole suite) where the full suite is slow; the executor runs typecheck and lint across the whole branch after each merge anyway.
+3. **Testable alone.** Verify commands run in a clean container with the network off after the project's `setup` command, so they must not need running services, secrets or internet. Where the full suite is slow, scope them to the task (`vitest run src/sim`, not the whole suite); the executor runs typecheck and lint across the whole branch after each merge.
 4. **Expected results.** Name the new tests that must exist and pass, not just "tests pass". That stops a sub-agent passing by writing no tests.
 5. **Overlap is fine.** Tasks may touch the same files and run in parallel; conflicts are resolved at merge time. Accurate `files` lists let the executor predict overlap and pick a merge order.
 6. **`executor: opus`** when the task needs design judgement, touches auth, payment or other security-sensitive code, needs secrets or internal services, or is smaller than its own brief would be (under about 30 lines).

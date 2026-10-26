@@ -73,7 +73,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends python3 python3
 ssh <server> 'docker build -t subagent-myproject:v1 -' < Dockerfile.myproject
 ```
 
-Add language servers (as above) if you use omp for refactors; its LSP tools only work when the server for the language is installed.
+If you use omp for refactors, add the language's server to the image (as above); omp's LSP tools need it.
 
 ## Choosing harness and model
 

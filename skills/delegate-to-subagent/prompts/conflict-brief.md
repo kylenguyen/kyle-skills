@@ -1,6 +1,6 @@
 # Task {TASK_ID}: resolve merge conflicts for "{TITLE}"
 
-You are resolving merge conflicts in a git repository. The repository is your current working directory. Task {MERGED_TASK_ID} is already in the code. Task {TASK_ID} is being merged on top of it with `git merge`, and these files still have conflict markers:
+You are resolving merge conflicts in the git repository in your current working directory. Task {MERGED_TASK_ID} is already in the code. Task {TASK_ID} is being merged on top of it with `git merge`, and these files still have conflict markers:
 
 {CONFLICTED_FILES}
 
